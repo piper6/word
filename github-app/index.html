@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0f1115">
+<title>単語フラッシュカード</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<style>
+  :root{
+    --bg:#eef1f7; --bg-glow:#dfe6f5; --panel:#ffffff; --panel2:#e7ebf4; --text:#161b27;
+    --muted:#5e6679; --accent:#3666e6; --accent-text:#ffffff; --accent2:#13865a; --warn:#a85f00;
+    --warn-bg:rgba(168,95,0,.10); --warn-border:rgba(168,95,0,.35);
+    --border:#d3d9e6; --shadow:0 10px 30px rgba(30,45,90,.12); --scrim:rgba(15,20,35,.35);
+    --font-ui:"Zen Kaku Gothic New",-apple-system,BlinkMacSystemFont,"Segoe UI","Hiragino Sans","Noto Sans JP",Meiryo,sans-serif;
+    --font-card:"Source Serif 4","Zen Kaku Gothic New","Hiragino Mincho ProN",Georgia,serif;
+    color-scheme:light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f1115; --bg-glow:#1b2030; --panel:#1a1e27; --panel2:#232838; --text:#e8ecf3;
+      --muted:#8b93a7; --accent:#5b8cff; --accent-text:#ffffff; --accent2:#3ecf8e; --warn:#ffb454;
+      --warn-bg:rgba(255,180,84,.15); --warn-border:rgba(255,180,84,.35);
+      --border:#2c3242; --shadow:0 12px 40px rgba(0,0,0,.45); --scrim:rgba(0,0,0,.55);
+      color-scheme:dark;
+    }
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%}
+  [hidden]{display:none!important}
+  body{
+    font-family:var(--font-ui);font-size:14px;
+    background:radial-gradient(1200px 800px at 50% -10%,var(--bg-glow),var(--bg) 60%) var(--bg);
+    color:var(--text);display:flex;flex-direction:column;min-height:100%;
+    padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  header{
+    padding-block:12px;
+    padding-left:max(16px, env(safe-area-inset-left, 0px));
+    padding-right:max(16px, env(safe-area-inset-right, 0px));
+    border-bottom:1px solid var(--border);
+    display:flex;flex-direction:column;gap:10px;
+  }
+  .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  h1{font-size:16px;margin:0;font-weight:700;letter-spacing:.04em;margin-right:auto}
+  .stats{color:var(--muted);font-size:12px;font-variant-numeric:tabular-nums}
+  button,select,input[type=text],input[type=password]{
+    background:var(--panel2);color:var(--text);border:1px solid var(--border);
+    padding:8px 12px;border-radius:10px;font-size:13px;font-family:inherit;
+  }
+  button,select{cursor:pointer;transition:border-color .15s, filter .15s}
+  button:hover{border-color:var(--accent)}
+  button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  button.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-text);font-weight:700}
+  button.primary:hover{filter:brightness(1.08)}
+  button:disabled,select:disabled{opacity:.4;cursor:not-allowed}
+  .seg{display:flex;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+  .seg button{border:none;border-radius:0;background:var(--panel)}
+  .seg button.on{background:var(--accent);color:var(--accent-text)}
+  details.settings{position:relative}
+  details.settings summary{
+    list-style:none;cursor:pointer;background:var(--panel2);border:1px solid var(--border);
+    padding:8px 12px;border-radius:10px;font-size:13px;user-select:none;
+  }
+  details.settings summary::-webkit-details-marker{display:none}
+  details.settings[open] summary{border-color:var(--accent)}
+  .settings-panel{
+    position:absolute;right:0;top:calc(100% + 6px);z-index:20;width:min(320px, calc(100vw - 32px));
+    background:var(--panel);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);
+    padding:14px;display:flex;flex-direction:column;gap:14px;
+  }
+  .settings-panel .label{font-size:11px;color:var(--muted);letter-spacing:.08em;margin-bottom:6px}
+  .settings-panel input[type=text],.settings-panel input[type=password]{width:100%}
+  @media (max-width:640px){ .settings-panel{position:fixed;top:auto;left:max(16px, env(safe-area-inset-left, 0px));right:max(16px, env(safe-area-inset-right, 0px));width:auto;margin-top:6px} }
+  .settings-panel .small{font-size:12px;color:var(--muted);line-height:1.6}
+  .settings-panel .small a{color:var(--accent)}
+  .stack{display:flex;flex-direction:column;gap:6px}
+  .check{display:flex;align-items:center;gap:8px;font-size:13px}
+  main{
+    flex:1;display:flex;align-items:center;justify-content:center;
+    padding-block:20px;
+    padding-left:max(16px, env(safe-area-inset-left, 0px));
+    padding-right:max(16px, env(safe-area-inset-right, 0px));
+  }
+  .card-wrap{width:min(620px,100%);display:flex;flex-direction:column;align-items:center;gap:16px}
+  .card{
+    width:100%;min-height:280px;border-radius:22px;background:var(--panel);
+    border:1px solid var(--border);box-shadow:var(--shadow);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    padding:44px 24px 40px;cursor:pointer;position:relative;user-select:none;text-align:center;
+    transition:transform .12s;
+  }
+  .card:active{transform:scale(.99)}
+  .side-label{position:absolute;top:16px;left:20px;font-size:11px;letter-spacing:.12em;color:var(--muted);font-weight:700}
+  .badge{
+    position:absolute;top:14px;right:16px;font-size:11px;padding:3px 10px;border-radius:999px;
+    background:var(--warn-bg);color:var(--warn);border:1px solid var(--warn-border);font-weight:700;
+  }
+  .term{font-family:var(--font-card);font-size:clamp(24px,6vw,40px);font-weight:700;line-height:1.35;word-break:break-word;min-width:0;max-width:100%}
+  .answer{font-family:var(--font-card);font-size:clamp(20px,5vw,30px);color:var(--accent2);font-weight:600;line-height:1.4;word-break:break-word}
+  .answer.none{color:var(--warn);font-size:18px;font-style:italic;font-family:var(--font-ui)}
+  .hint{position:absolute;bottom:14px;font-size:12px;color:var(--muted)}
+  .divider{width:60%;height:1px;background:var(--border);margin:20px auto 14px}
+  .nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center}
+  .counter{font-variant-numeric:tabular-nums;color:var(--muted);font-size:14px;min-width:80px;text-align:center}
+  .kbd{font-size:12px;color:var(--muted);text-align:center}
+  .kbd b{color:var(--text);background:var(--panel2);border:1px solid var(--border);border-radius:5px;padding:1px 6px;font-weight:500}
+  .status{font-size:12px;color:var(--muted);min-height:1em;text-align:center}
+  .empty-msg{color:var(--muted);font-family:var(--font-ui);font-size:15px;font-weight:400;line-height:1.7}
+  @media (hover:none){ .kbd{display:none} }
+
+  .scrim{position:fixed;inset:0;background:var(--scrim);z-index:40}
+  .sheet{
+    position:fixed;z-index:41;left:50%;transform:translateX(-50%);
+    bottom:0;width:min(520px,100%);margin:0;
+    background:var(--panel);border:1px solid var(--border);border-bottom:none;
+    border-radius:18px 18px 0 0;box-shadow:var(--shadow);
+    padding-top:18px;
+    padding-bottom:calc(18px + env(safe-area-inset-bottom, 0px));
+    padding-left:max(18px, env(safe-area-inset-left, 0px));
+    padding-right:max(18px, env(safe-area-inset-right, 0px));
+    display:flex;flex-direction:column;gap:12px;
+  }
+  @media (min-width:640px){
+    .sheet{bottom:auto;top:18vh;border-radius:18px;border-bottom:1px solid var(--border);padding-bottom:18px}
+  }
+  .sheet h2{margin:0;font-size:16px}
+  .sheet-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .sheet-head h2{margin-right:auto}
+  .field{display:flex;flex-direction:column;gap:5px}
+  .field label{font-size:12px;color:var(--muted)}
+  .field input{width:100%;font-size:16px;padding:10px 12px}
+  .sheet-actions{display:flex;gap:8px;justify-content:flex-end;align-items:center;flex-wrap:wrap}
+  .sheet-msg{font-size:12px;margin-right:auto;min-width:0}
+  .sheet-msg.ok{color:var(--accent2)}
+  .sheet-msg.warn{color:var(--warn)}
+  .preview{font-size:12px;color:var(--muted);font-family:ui-monospace,SFMono-Regular,Consolas,monospace;word-break:break-all}
+  .toast{
+    position:fixed;left:50%;transform:translateX(-50%);
+    bottom:calc(20px + env(safe-area-inset-bottom, 0px));z-index:50;
+    background:var(--text);color:var(--bg);padding:10px 16px;border-radius:12px;font-size:13px;
+    box-shadow:var(--shadow);max-width:calc(100% - 32px);
+  }
+  @media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+</style>
+</head>
+<body>
+<header>
+  <div class="row">
+    <h1>単語フラッシュカード</h1>
+    <span class="stats" id="stats"></span>
+  </div>
+  <div class="row">
+    <div class="seg" id="deckSeg" title="デッキ">
+      <button data-deck="word" class="on">英単語</button>
+      <button data-deck="jtoe">和→英</button>
+    </div>
+    <select id="groupSelect" disabled title="ファイルの順に100枚ずつ" aria-label="グループ">
+      <option value="0">読み込み中…</option>
+    </select>
+    <button id="shuffleBtn" title="選択中のグループ内で並べ替え">シャッフル</button>
+    <button id="addBtn" class="primary" disabled>＋ 追加</button>
+    <details class="settings" id="settings">
+      <summary>設定</summary>
+      <div class="settings-panel">
+        <div>
+          <div class="label">出題の向き</div>
+          <div class="seg" id="dirSeg">
+            <button data-dir="term" class="on">表→裏</button>
+            <button data-dir="answer">裏→表</button>
+            <button data-dir="mix">ミックス</button>
+          </div>
+        </div>
+        <label class="check"><input id="skipEmpty" type="checkbox"> 答えなしを除く</label>
+        <label class="check"><input id="autoSpeak" type="checkbox" checked> 英語を自動再生</label>
+        <div class="stack">
+          <div class="label">GitHub 接続（単語の追加に必要・端末ごとに1回）</div>
+          <input id="repoInput" type="text" placeholder="ユーザー名/リポジトリ名" autocapitalize="off" spellcheck="false" aria-label="リポジトリ">
+          <input id="tokenInput" type="password" placeholder="アクセストークン (github_pat_…)" autocomplete="off" aria-label="アクセストークン">
+          <div class="row">
+            <button id="tokenSave" class="primary">保存して接続</button>
+            <button id="tokenClear">削除</button>
+          </div>
+          <div class="small" id="tokenStatus">未接続：閲覧のみできます。</div>
+          <div class="small"><a id="repoLink" href="#" target="_blank" rel="noopener">GitHub でファイルを開く</a></div>
+        </div>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main>
+  <div class="card-wrap" id="cardWrap">
+    <div class="card" id="card" role="button" tabindex="0" aria-label="カードをめくる">
+      <span class="side-label" id="sideLabel"></span>
+      <span class="badge" id="badge" hidden>答えなし</span>
+      <div class="term" id="frontText"><span class="empty-msg">単語を読み込んでいます…</span></div>
+      <div id="revealArea" hidden style="width:100%">
+        <div class="divider"></div>
+        <div class="answer" id="answerText"></div>
+      </div>
+      <div class="hint" id="hint"></div>
+    </div>
+    <div class="nav">
+      <button id="prevBtn" disabled>← 前</button>
+      <span class="counter" id="counter">0 / 0</span>
+      <button id="nextBtn" class="primary" disabled>次 →</button>
+      <button id="speakBtn" disabled>発音</button>
+    </div>
+    <div class="status" id="status" role="status"></div>
+    <div class="kbd"><b>Space</b> めくる · <b>→</b> 次 · <b>←</b> 前 · <b>S</b> シャッフル · <b>A</b> 追加</div>
+  </div>
+</main>
+
+<div class="scrim" id="scrim" hidden></div>
+<form class="sheet" id="sheet" hidden autocomplete="off">
+  <div class="sheet-head">
+    <h2>単語を追加</h2>
+    <div class="seg" id="addDeckSeg">
+      <button type="button" data-deck="word" class="on">英単語</button>
+      <button type="button" data-deck="jtoe">和→英</button>
+    </div>
+  </div>
+  <div class="field">
+    <label for="addFront" id="addFrontLabel">表（英語）</label>
+    <input id="addFront" type="text" enterkeyhint="next" autocapitalize="off" spellcheck="false">
+  </div>
+  <div class="field">
+    <label for="addBack" id="addBackLabel">裏（意味）— 空欄でも可</label>
+    <input id="addBack" type="text" enterkeyhint="done" autocapitalize="off" spellcheck="false">
+  </div>
+  <div class="preview" id="addPreview"></div>
+  <div class="sheet-actions">
+    <span class="sheet-msg" id="addMsg" role="status"></span>
+    <button type="button" id="addClose">閉じる</button>
+    <button type="submit" class="primary" id="addSubmit">追加</button>
+  </div>
+</form>
+
+<div class="toast" id="toast" hidden></div>
+
+<script>
+(function(){
+  "use strict";
+  // Word files live in the repo under words/. Each line is `表\答え`.
+  var DECKS = {
+    word: {label:"英単語", path:"words/word.md", frontLabel:"表（英語）", backLabel:"裏（意味）— 空欄でも可"},
+    jtoe: {label:"和→英", path:"words/jtoe.md", frontLabel:"表（日本語）", backLabel:"裏（英語）— 空欄でも可"}
+  };
+  var BRANCH = "main";
+  var GROUP_SIZE = 100;
+
+  var el = function(id){ return document.getElementById(id); };
+  function lsGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+  function lsSet(k,v){ try{ if(v === null) localStorage.removeItem(k); else localStorage.setItem(k,v); }catch(e){} }
+
+  // ---------- repo / token ----------
+  function guessRepo(){
+    var m = location.hostname.match(/^([^.]+)\.github\.io$/i);
+    var seg = location.pathname.split("/").filter(Boolean)[0];
+    if(m && seg && !/\.html?$/i.test(seg)) return m[1] + "/" + seg;
+    if(m) return m[1] + "/" + m[1] + ".github.io";
+    return "";
+  }
+  var repo = lsGet("fc_repo") || guessRepo();
+  var token = lsGet("fc_token") || "";
+
+  var deckTexts = {word:null, jtoe:null};
+  var deckSha = {word:null, jtoe:null};
+  var loaded = false;
+
+  var deck = DECKS[lsGet("fc_deck")] ? lsGet("fc_deck") : "word";
+  var cards = [], order = [], pos = 0, revealed = false;
+  var direction = "term", skipEmpty = false, group = 0;
+
+  var groupSelect = el("groupSelect"), frontText = el("frontText"), answerText = el("answerText");
+  var revealArea = el("revealArea"), sideLabel = el("sideLabel"), badge = el("badge");
+  var counter = el("counter"), stats = el("stats"), hint = el("hint"), statusEl = el("status");
+
+  // ---------- speech ----------
+  function isEnglish(text){
+    return /[a-z]/i.test(text) && !/[぀-ヿ㐀-鿿豈-﫿ｦ-ﾟ]/.test(text);
+  }
+  var synth = window.speechSynthesis;
+  var audioSupported = !!(synth && window.SpeechSynthesisUtterance);
+  var audioReady = false, visibleEnglish = "", speechVersion = 0;
+  var autoSpeak = el("autoSpeak"), speakBtn = el("speakBtn");
+  autoSpeak.checked = lsGet("flashcards_auto_speak") !== "false";
+  if(!audioSupported){ autoSpeak.disabled = true; }
+  function stopSpeech(){ speechVersion++; if(audioSupported) synth.cancel(); }
+  function speakEnglish(){
+    if(!audioSupported || !visibleEnglish) return;
+    stopSpeech();
+    var version = speechVersion;
+    var u = new SpeechSynthesisUtterance(visibleEnglish);
+    var voices = synth.getVoices();
+    var voice = voices.find(function(v){ return /^en[-_]US$/i.test(v.lang); }) ||
+      voices.find(function(v){ return /^en(?:[-_]|$)/i.test(v.lang); });
+    u.lang = voice ? voice.lang : "en-US";
+    if(voice) u.voice = voice;
+    u.onerror = function(e){
+      if(version !== speechVersion || e.error === "canceled" || e.error === "interrupted") return;
+      setStatus("音声を再生できません。「発音」を押してください", 4000);
+    };
+    synth.speak(u);
+  }
+  function updateAudio(text, fresh){
+    var changed = text !== visibleEnglish;
+    if(changed || fresh) stopSpeech();
+    visibleEnglish = text;
+    speakBtn.disabled = !audioSupported || !text;
+    if(text && autoSpeak.checked && audioReady && (changed || fresh)) speakEnglish();
+  }
+  function enableAudio(e){
+    if(!e.isTrusted || audioReady) return;
+    if(e.target.closest && e.target.closest("#sheet, #settings")) return;
+    audioReady = true;
+  }
+  document.addEventListener("click", enableAudio, true);
+  document.addEventListener("keydown", enableAudio, true);
+  speakBtn.addEventListener("click", speakEnglish);
+  autoSpeak.addEventListener("change", function(){
+    lsSet("flashcards_auto_speak", String(autoSpeak.checked));
+    stopSpeech();
+  });
+  window.addEventListener("pagehide", stopSpeech);
+
+  // ---------- parsing ----------
+  function parse(text){
+    var out = [];
+    var lines = (text || "").split(/\r?\n/);
+    for(var i=0;i<lines.length;i++){
+      var line = lines[i].replace(/\s+$/,"");
+      var core = line.trim();
+      if(core === "" || core === "#") continue;
+      var idx = line.indexOf("\\");
+      var term, answer;
+      if(idx === -1){ term = core; answer = ""; }
+      else { term = line.slice(0,idx).trim(); answer = line.slice(idx+1).trim(); }
+      if(term === "" && answer === "") continue;
+      out.push({term:term, answer:answer, hasAnswer: answer.length>0});
+    }
+    return out;
+  }
+
+  // ---------- deck / group ops ----------
+  function groupCount(){ return Math.max(1, Math.ceil(cards.length / GROUP_SIZE)); }
+  function buildGroups(){
+    groupSelect.textContent = "";
+    for(var start=0; start<cards.length; start+=GROUP_SIZE){
+      var o = document.createElement("option");
+      o.value = String(start / GROUP_SIZE);
+      o.textContent = "グループ " + (start/GROUP_SIZE + 1) + "（" + (start+1) + "–" + Math.min(start+GROUP_SIZE, cards.length) + "）";
+      groupSelect.appendChild(o);
+    }
+    if(!cards.length){
+      var e = document.createElement("option"); e.value = "0"; e.textContent = "カードなし"; groupSelect.appendChild(e);
+    }
+    groupSelect.value = String(group);
+    groupSelect.disabled = cards.length === 0;
+  }
+  function activeIndices(){
+    var arr = [], start = group * GROUP_SIZE, end = Math.min(start + GROUP_SIZE, cards.length);
+    for(var i=start;i<end;i++){ if(skipEmpty && !cards[i].hasAnswer) continue; arr.push(i); }
+    return arr;
+  }
+  function shuffle(){
+    order = activeIndices();
+    for(var i=order.length-1;i>0;i--){
+      var j = Math.floor(Math.random()*(i+1)); var t=order[i]; order[i]=order[j]; order[j]=t;
+    }
+    pos = 0; revealed = false;
+  }
+  function reconcileOrder(){
+    var active = activeIndices(), set = {}, keep = [];
+    active.forEach(function(i){ set[i] = true; });
+    var current = order[pos];
+    order.forEach(function(i){ if(set[i]){ keep.push(i); delete set[i]; } });
+    Object.keys(set).forEach(function(k){ keep.push(Number(k)); });
+    order = keep;
+    var p = order.indexOf(current);
+    pos = p >= 0 ? p : Math.min(pos, Math.max(0, order.length-1));
+  }
+  function savedGroup(){ var g = Number(lsGet("fc_group_" + deck)); return Number.isInteger(g) && g >= 0 ? g : 0; }
+
+  function selectDeck(name, keepPlace){
+    deck = name; lsSet("fc_deck", name);
+    Array.prototype.forEach.call(el("deckSeg").children, function(b){ b.classList.toggle("on", b.getAttribute("data-deck") === name); });
+    var prevCount = cards.length;
+    cards = parse(deckTexts[name]);
+    if(!keepPlace){ group = Math.min(savedGroup(), groupCount()-1); buildGroups(); shuffle(); }
+    else {
+      if(group > groupCount()-1) group = groupCount()-1;
+      if(prevCount !== cards.length) buildGroups();
+      reconcileOrder();
+    }
+    render(!keepPlace);
+  }
+
+  function frontIsTerm(ci){
+    if(direction === "term") return true;
+    if(direction === "answer") return false;
+    return (ci % 2) === 0;
+  }
+
+  function render(fresh){
+    fresh = fresh !== false;
+    if(!loaded) return;
+    stats.textContent = DECKS[deck].label + " 全 " + cards.length + " 枚 · 対象 " + order.length + " 枚";
+    el("prevBtn").disabled = el("nextBtn").disabled = order.length === 0;
+    if(order.length === 0){
+      updateAudio("", true);
+      counter.textContent = "0 / 0";
+      revealArea.hidden = true; badge.hidden = true; sideLabel.textContent = "";
+      frontText.innerHTML = cards.length
+        ? '<span class="empty-msg">このグループには表示できるカードがありません。<br>別のグループを選ぶか「答えなしを除く」を外してください。</span>'
+        : '<span class="empty-msg">まだカードがありません。<br>「＋ 追加」から最初の単語を登録してください。</span>';
+      hint.textContent = "";
+      return;
+    }
+    var ci = order[pos], c = cards[ci];
+    var showTerm = frontIsTerm(ci);
+    var front = showTerm ? c.term : c.answer;
+    var back = showTerm ? c.answer : c.term;
+    var backExists = showTerm ? c.hasAnswer : (c.term.length > 0);
+    if(front === ""){ front = c.term; back = c.answer; backExists = c.hasAnswer; showTerm = true; }
+
+    var englishAnswer = revealed && backExists && isEnglish(back);
+    updateAudio(englishAnswer ? back : (isEnglish(front) ? front : ""), fresh || englishAnswer);
+
+    sideLabel.textContent = showTerm ? "表" : "裏";
+    frontText.textContent = front;
+    badge.hidden = backExists;
+    if(revealed){
+      revealArea.hidden = false;
+      answerText.textContent = backExists ? back : "（答えなし）";
+      answerText.className = backExists ? "answer" : "answer none";
+      hint.textContent = "タップ / → で次へ";
+    } else {
+      revealArea.hidden = true;
+      hint.textContent = backExists ? "タップ / スペースでめくる" : "答えなし — タップで確認";
+    }
+    counter.textContent = (pos+1) + " / " + order.length;
+  }
+
+  function flip(){ if(!order.length) return; revealed = !revealed; render(false); }
+  function next(){ if(!order.length) return; pos = (pos+1) % order.length; revealed = false; render(); }
+  function prev(){ if(!order.length) return; pos = (pos-1+order.length) % order.length; revealed = false; render(); }
+
+  var statusTimer = null;
+  function setStatus(msg, ms){
+    statusEl.textContent = msg || "";
+    clearTimeout(statusTimer);
+    if(msg && ms) statusTimer = setTimeout(function(){ statusEl.textContent = ""; }, ms);
+  }
+  var toastTimer = null;
+  function toast(msg){
+    var t = el("toast"); t.textContent = msg; t.hidden = false;
+    clearTimeout(toastTimer); toastTimer = setTimeout(function(){ t.hidden = true; }, 2600);
+  }
+
+  // ---------- GitHub API ----------
+  function b64ToUtf8(b64){
+    var bin = atob(b64.replace(/\s/g, "")), bytes = new Uint8Array(bin.length);
+    for(var i=0;i<bin.length;i++) bytes[i] = bin.charCodeAt(i);
+    return new TextDecoder("utf-8").decode(bytes);
+  }
+  function utf8ToB64(str){
+    var bytes = new TextEncoder().encode(str), bin = "";
+    for(var i=0;i<bytes.length;i+=0x8000) bin += String.fromCharCode.apply(null, bytes.subarray(i, i+0x8000));
+    return btoa(bin);
+  }
+  function api(path, opts){
+    opts = opts || {};
+    var headers = {"Accept":"application/vnd.github+json", "X-GitHub-Api-Version":"2022-11-28"};
+    if(token) headers["Authorization"] = "Bearer " + token;
+    if(opts.body) headers["Content-Type"] = "application/json";
+    return fetch("https://api.github.com/repos/" + repo + path, {
+      method: opts.method || "GET", headers: headers, body: opts.body, cache: "no-store"
+    }).then(function(r){
+      return r.text().then(function(t){
+        var j = null; try{ j = t ? JSON.parse(t) : null; }catch(e){}
+        if(!r.ok){ var err = new Error((j && j.message) || ("HTTP " + r.status)); err.status = r.status; throw err; }
+        return j;
+      });
+    });
+  }
+  // With a token: read straight from the repo (always fresh). Without: read the copy GitHub Pages serves.
+  function fetchDeck(d){
+    if(token && repo){
+      return api("/contents/" + DECKS[d].path + "?ref=" + BRANCH).then(function(j){
+        deckSha[d] = j.sha;
+        return b64ToUtf8(j.content || "");
+      });
+    }
+    return fetch(DECKS[d].path + "?t=" + Date.now(), {cache:"no-store"}).then(function(r){
+      if(!r.ok) throw new Error("HTTP " + r.status);
+      return r.text();
+    });
+  }
+  function loadAll(){
+    var names = Object.keys(DECKS);
+    return Promise.all(names.map(function(d){
+      return fetchDeck(d).then(function(t){ return [d, t]; }, function(err){ return [d, null, err]; });
+    })).then(function(results){
+      var failed = null, changedCurrent = false;
+      results.forEach(function(r){
+        if(r[1] === null){ failed = r[2]; return; }
+        if(deckTexts[r[0]] !== r[1]){ if(r[0] === deck) changedCurrent = true; deckTexts[r[0]] = r[1]; }
+        lsSet("fc_cache_" + r[0], r[1]);
+      });
+      if(failed){
+        if(failed.status === 401) setStatus("トークンが無効です。設定から登録し直してください。");
+        else setStatus("最新の単語を取得できませんでした。保存済みのデータを表示しています。", 6000);
+      } else setStatus("");
+      return changedCurrent;
+    });
+  }
+
+  function appendLine(d, line, retried){
+    return api("/contents/" + DECKS[d].path + "?ref=" + BRANCH).then(function(j){
+      var text = b64ToUtf8(j.content || "");
+      if(text && !/\n$/.test(text)) text += "\n";
+      text += line + "\n";
+      return api("/contents/" + DECKS[d].path, {
+        method: "PUT",
+        body: JSON.stringify({message: "Add: " + line.split("\\")[0], content: utf8ToB64(text), sha: j.sha, branch: BRANCH})
+      }).then(function(res){
+        deckTexts[d] = text; deckSha[d] = res && res.content ? res.content.sha : null;
+        lsSet("fc_cache_" + d, text);
+        if(d === deck) selectDeck(deck, true);
+      });
+    }).catch(function(err){
+      // 409/422: the file changed on another device in the meantime — re-read and try once more
+      if(!retried && (err.status === 409 || err.status === 422)) return appendLine(d, line, true);
+      throw err;
+    });
+  }
+
+  // ---------- events ----------
+  el("card").addEventListener("click", flip);
+  el("card").addEventListener("keydown", function(e){ if(e.key === "Enter"){ e.preventDefault(); flip(); } });
+  el("nextBtn").addEventListener("click", next);
+  el("prevBtn").addEventListener("click", prev);
+  el("shuffleBtn").addEventListener("click", function(){ shuffle(); render(); });
+  groupSelect.addEventListener("change", function(){
+    var g = Number(groupSelect.value);
+    if(!Number.isInteger(g) || g < 0 || g >= groupCount()) return;
+    group = g; lsSet("fc_group_" + deck, String(g)); shuffle(); render();
+  });
+  el("skipEmpty").addEventListener("change", function(e){ skipEmpty = e.target.checked; shuffle(); render(); });
+  el("dirSeg").addEventListener("click", function(e){
+    var b = e.target.closest("button"); if(!b) return;
+    direction = b.getAttribute("data-dir");
+    Array.prototype.forEach.call(this.children, function(x){ x.classList.toggle("on", x === b); });
+    revealed = false; render();
+  });
+  el("deckSeg").addEventListener("click", function(e){
+    var b = e.target.closest("button"); if(!b || !loaded) return;
+    var d = b.getAttribute("data-deck"); if(d === deck) return;
+    selectDeck(d, false);
+  });
+  document.addEventListener("click", function(e){
+    var s = el("settings");
+    if(s.open && !s.contains(e.target)) s.open = false;
+  });
+  document.addEventListener("keydown", function(e){
+    if(!el("sheet").hidden){ if(e.key === "Escape") closeSheet(); return; }
+    if(e.target.closest("button, input, select, textarea, summary") || e.target.isContentEditable) return;
+    if(e.ctrlKey || e.metaKey || e.altKey) return;
+    if(e.code === "Space"){ e.preventDefault(); flip(); }
+    else if(e.code === "ArrowRight"){ next(); }
+    else if(e.code === "ArrowLeft"){ prev(); }
+    else if(e.key === "s" || e.key === "S"){ shuffle(); render(); }
+    else if((e.key === "a" || e.key === "A") && !el("addBtn").disabled){ e.preventDefault(); openSheet(); }
+  });
+  (function(){
+    var x0 = null, y0 = null, card = el("card");
+    card.addEventListener("touchstart", function(e){ var t = e.touches[0]; x0 = t.clientX; y0 = t.clientY; }, {passive:true});
+    card.addEventListener("touchend", function(e){
+      if(x0 === null) return;
+      var t = e.changedTouches[0], dx = t.clientX - x0, dy = t.clientY - y0; x0 = null;
+      if(Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5){ e.preventDefault(); if(dx < 0) next(); else prev(); }
+    });
+  })();
+  // refresh when coming back to the tab (picks up words added on another device)
+  document.addEventListener("visibilitychange", function(){
+    if(document.visibilityState === "visible" && loaded){
+      loadAll().then(function(changed){ if(changed) selectDeck(deck, true); });
+    }
+  });
+
+  // ---------- settings: GitHub connection ----------
+  var repoInput = el("repoInput"), tokenInput = el("tokenInput"), tokenStatus = el("tokenStatus");
+  function refreshConnUI(){
+    repoInput.value = repo;
+    tokenInput.value = "";
+    tokenInput.placeholder = token ? "登録済み（変更する場合のみ入力）" : "アクセストークン (github_pat_…)";
+    el("repoLink").href = repo ? "https://github.com/" + repo + "/tree/" + BRANCH + "/words" : "https://github.com";
+    tokenStatus.textContent = token ? "接続済み：この端末から単語を追加できます。" : "未接続：閲覧のみできます。";
+  }
+  el("tokenSave").addEventListener("click", function(){
+    var r = repoInput.value.trim().replace(/^https?:\/\/github\.com\//i, "").replace(/\/+$/, "");
+    var t = tokenInput.value.trim() || token;
+    if(!/^[\w.-]+\/[\w.-]+$/.test(r)){ tokenStatus.textContent = "リポジトリは「ユーザー名/リポジトリ名」の形で入力してください。"; return; }
+    if(!t){ tokenStatus.textContent = "アクセストークンを入力してください。"; return; }
+    tokenStatus.textContent = "確認中…";
+    var oldRepo = repo, oldToken = token;
+    repo = r; token = t;
+    api("").then(function(j){
+      if(j && j.permissions && j.permissions.push === false) throw Object.assign(new Error("no push"), {status:403});
+      lsSet("fc_repo", repo); lsSet("fc_token", token);
+      refreshConnUI();
+      toast("GitHub に接続しました");
+      return loadAll().then(function(changed){ if(changed) selectDeck(deck, true); });
+    }).catch(function(err){
+      repo = oldRepo; token = oldToken;
+      tokenStatus.textContent = err.status === 401 ? "トークンが正しくありません。"
+        : err.status === 404 ? "リポジトリが見つかりません。名前とトークンの対象リポジトリを確認してください。"
+        : err.status === 403 ? "このトークンには書き込み権限がありません（Contents: Read and write が必要）。"
+        : "接続できませんでした。通信状態を確認してください。";
+    });
+  });
+  el("tokenClear").addEventListener("click", function(){
+    token = ""; lsSet("fc_token", null); refreshConnUI(); toast("この端末のトークンを削除しました");
+  });
+
+  // ---------- quick-add ----------
+  var addDeck = deck, dupArmed = "";
+  var addFront = el("addFront"), addBack = el("addBack"), addMsg = el("addMsg");
+  function setAddDeck(d){
+    addDeck = d; dupArmed = "";
+    Array.prototype.forEach.call(el("addDeckSeg").children, function(b){ b.classList.toggle("on", b.getAttribute("data-deck") === d); });
+    el("addFrontLabel").textContent = DECKS[d].frontLabel;
+    el("addBackLabel").textContent = DECKS[d].backLabel;
+    updatePreview();
+  }
+  function cleanPart(s){ return s.replace(/[\r\n\t]+/g, " ").replace(/\s{2,}/g, " ").trim(); }
+  function buildLine(){
+    var f = cleanPart(addFront.value).replace(/\\/g, "/");
+    var b = cleanPart(addBack.value);
+    if(!f) return "";
+    return b ? f + "\\" + b : f;
+  }
+  function updatePreview(){
+    var line = buildLine();
+    el("addPreview").textContent = line ? DECKS[addDeck].path + " に追加: " + line : "";
+  }
+  function setMsg(text, kind){ addMsg.textContent = text || ""; addMsg.className = "sheet-msg" + (kind ? " " + kind : ""); }
+  function openSheet(){
+    if(!token){
+      el("settings").open = true;
+      tokenStatus.textContent = "単語を追加するには、まずこの端末で GitHub に接続してください。";
+      (repo ? tokenInput : repoInput).focus();
+      return;
+    }
+    setAddDeck(deck); setMsg("");
+    el("scrim").hidden = false; el("sheet").hidden = false;
+    el("settings").open = false;
+    setTimeout(function(){ addFront.focus(); }, 30);
+  }
+  function closeSheet(){ el("scrim").hidden = true; el("sheet").hidden = true; el("addBtn").focus(); }
+  el("addBtn").addEventListener("click", function(e){ e.stopPropagation(); openSheet(); });
+  el("addClose").addEventListener("click", closeSheet);
+  el("scrim").addEventListener("click", closeSheet);
+  el("addDeckSeg").addEventListener("click", function(e){
+    var b = e.target.closest("button"); if(b){ setAddDeck(b.getAttribute("data-deck")); addFront.focus(); }
+  });
+  addFront.addEventListener("input", function(){ dupArmed = ""; setMsg(""); updatePreview(); });
+  addBack.addEventListener("input", updatePreview);
+  addFront.addEventListener("keydown", function(e){
+    if(e.key === "Enter" && !e.isComposing){ e.preventDefault(); addBack.focus(); }
+  });
+  addBack.addEventListener("keydown", function(e){
+    if(e.key === "Enter" && e.isComposing) e.preventDefault();
+  });
+
+  var busy = false;
+  el("sheet").addEventListener("submit", function(e){
+    e.preventDefault();
+    if(busy) return;
+    var line = buildLine();
+    if(!line){ setMsg("表の欄を入力してください", "warn"); addFront.focus(); return; }
+    var front = line.split("\\")[0];
+    var existing = parse(deckTexts[addDeck]).some(function(c){ return c.term.toLowerCase() === front.toLowerCase(); });
+    if(existing && dupArmed !== front){
+      dupArmed = front;
+      setMsg("「" + front + "」は既にあります。もう一度押すと追加します", "warn");
+      return;
+    }
+    busy = true; el("addSubmit").disabled = true; setMsg("保存中…");
+    appendLine(addDeck, line).then(function(){
+      setMsg("追加しました: " + front, "ok");
+      addFront.value = ""; addBack.value = ""; dupArmed = ""; updatePreview();
+      addFront.focus();
+    }).catch(function(err){
+      if(err.status === 401) setMsg("トークンが無効です。設定から登録し直してください。", "warn");
+      else if(err.status === 403 || err.status === 404) setMsg("書き込み権限がありません。トークンの設定を確認してください。", "warn");
+      else setMsg("保存できませんでした。通信状態を確認してもう一度押してください。", "warn");
+    }).then(function(){ busy = false; el("addSubmit").disabled = false; });
+  });
+
+  // ---------- start ----------
+  refreshConnUI();
+  var hasCache = false;
+  Object.keys(DECKS).forEach(function(d){
+    var c = lsGet("fc_cache_" + d);
+    if(c !== null){ deckTexts[d] = c; hasCache = true; }
+  });
+  if(hasCache && deckTexts[deck] !== null){
+    loaded = true; el("addBtn").disabled = false; selectDeck(deck, false);
+  }
+  loadAll().then(function(changed){
+    Object.keys(DECKS).forEach(function(d){ if(deckTexts[d] === null) deckTexts[d] = ""; });
+    if(!loaded){ loaded = true; el("addBtn").disabled = false; selectDeck(deck, false); }
+    else if(changed) selectDeck(deck, true);
+  });
+})();
+</script>
+</body>
+</html>
