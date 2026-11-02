@@ -829,3 +829,9 @@ the experience soured him on politics\嫌気がさす
 broth\だし
 dismay\うろたえ
 snap the key\鍵を折る
+eject\排出する
+zinc\亜鉛
+claw\つめ
+crook\曲げる
+limp\片足を引きつる
+fuse\融合する

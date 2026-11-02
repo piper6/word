@@ -30,6 +30,8 @@
   *{box-sizing:border-box}
   html,body{margin:0;height:100%}
   [hidden]{display:none!important}
+  /* stop double-tap zoom when tapping buttons quickly on phones */
+  html,body,button,select,input,summary,.card,.seg{touch-action:manipulation}
   body{
     font-family:var(--font-ui);font-size:14px;
     background:radial-gradient(1200px 800px at 50% -10%,var(--bg-glow),var(--bg) 60%) var(--bg);
@@ -144,6 +146,8 @@
     box-shadow:var(--shadow);max-width:calc(100% - 32px);
   }
   @media (prefers-reduced-motion: reduce){ *{transition:none!important} }
+  /* iPhone zooms in when focusing a field smaller than 16px */
+  @media (max-width:640px){ select,input[type=text],input[type=password]{font-size:16px} }
 </style>
 </head>
 <body>
