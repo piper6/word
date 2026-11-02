@@ -154,3 +154,4 @@ feel secure in my finance\
 仲がいい\get along with
 経験則としては 大体の目安としては\as a rule of thumb
 商業施設\shopping complex
+変えるのもあり\I'm open to change
