@@ -248,10 +248,10 @@
 <script>
 (function(){
   "use strict";
-  // Word files live in the repo under words/. Each line is `front\back`.
+  // Paths are from the repo root. Each line is `front\back`.
   var DECKS = {
-    word: {label:"EN→JP", path:"words/word.md", frontLabel:"Front (English)", backLabel:"Back (meaning, optional)"},
-    jtoe: {label:"JP→EN", path:"words/jtoe.md", frontLabel:"Front (Japanese)", backLabel:"Back (English, optional)"}
+    word: {label:"EN→JP", path:"word/word.without-phonetics.md", frontLabel:"Front (English)", backLabel:"Back (meaning, optional)"},
+    jtoe: {label:"JP→EN", path:"word/jtoe.md", frontLabel:"Front (Japanese)", backLabel:"Back (English, optional)"}
   };
   var BRANCH = "main";
   var GROUP_SIZE = 100;
@@ -278,6 +278,7 @@
     if(p[0] && p[0].toLowerCase() === r) p = p.slice(1);
     return p.length ? p.map(decodeURIComponent).join("/") + "/" : "";
   })();
+  var SITE_UP = REPO_DIR.split("/").filter(Boolean).map(function(){ return "../"; }).join("");
 
   var deckTexts = {word:null, jtoe:null};
   var deckSha = {word:null, jtoe:null};
@@ -502,12 +503,12 @@
   // With a token: read straight from the repo (always fresh). Without: read the copy GitHub Pages serves.
   function fetchDeck(d){
     if(token && repo){
-      return api("/contents/" + REPO_DIR + DECKS[d].path + "?ref=" + BRANCH).then(function(j){
+      return api("/contents/" + DECKS[d].path + "?ref=" + BRANCH).then(function(j){
         deckSha[d] = j.sha;
         return b64ToUtf8(j.content || "");
       });
     }
-    return fetch(DECKS[d].path + "?t=" + Date.now(), {cache:"no-store"}).then(function(r){
+    return fetch(SITE_UP + DECKS[d].path + "?t=" + Date.now(), {cache:"no-store"}).then(function(r){
       if(!r.ok) throw new Error("HTTP " + r.status);
       return r.text();
     });
@@ -532,11 +533,12 @@
   }
 
   function appendLine(d, line, retried){
-    return api("/contents/" + REPO_DIR + DECKS[d].path + "?ref=" + BRANCH).then(function(j){
+    return api("/contents/" + DECKS[d].path + "?ref=" + BRANCH).then(function(j){
       var text = b64ToUtf8(j.content || "");
-      if(text && !/\n$/.test(text)) text += "\n";
-      text += line + "\n";
-      return api("/contents/" + REPO_DIR + DECKS[d].path, {
+      var nl = /\r\n/.test(text) ? "\r\n" : "\n";  // keep the file's own line endings
+      if(text && !/\n$/.test(text)) text += nl;
+      text += line + nl;
+      return api("/contents/" + DECKS[d].path, {
         method: "PUT",
         body: JSON.stringify({message: "Add: " + line.split("\\")[0], content: utf8ToB64(text), sha: j.sha, branch: BRANCH})
       }).then(function(res){
@@ -610,7 +612,7 @@
     repoInput.value = repo;
     tokenInput.value = "";
     tokenInput.placeholder = token ? "Saved (enter a new one only to change it)" : "Access token (github_pat_…)";
-    el("repoLink").href = repo ? "https://github.com/" + repo + "/tree/" + BRANCH + "/" + REPO_DIR + "words" : "https://github.com";
+    el("repoLink").href = repo ? "https://github.com/" + repo + "/tree/" + BRANCH + "/word" : "https://github.com";
     tokenStatus.textContent = token ? "Connected: you can add words from this device." : "Not connected: you can study, but not add words.";
   }
   el("tokenSave").addEventListener("click", function(){
