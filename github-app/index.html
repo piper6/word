@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#0f1115">
-<title>単語フラッシュカード</title>
+<title>Vocabulary Flashcards</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
@@ -149,42 +149,42 @@
 <body>
 <header>
   <div class="row">
-    <h1>単語フラッシュカード</h1>
+    <h1>Vocabulary Flashcards</h1>
     <span class="stats" id="stats"></span>
   </div>
   <div class="row">
-    <div class="seg" id="deckSeg" title="デッキ">
-      <button data-deck="word" class="on">英単語</button>
-      <button data-deck="jtoe">和→英</button>
+    <div class="seg" id="deckSeg" title="Deck">
+      <button data-deck="word" class="on">EN→JP</button>
+      <button data-deck="jtoe">JP→EN</button>
     </div>
-    <select id="groupSelect" disabled title="ファイルの順に100枚ずつ" aria-label="グループ">
-      <option value="0">読み込み中…</option>
+    <select id="groupSelect" disabled title="100 cards per group, in file order" aria-label="Group">
+      <option value="0">Loading…</option>
     </select>
-    <button id="shuffleBtn" title="選択中のグループ内で並べ替え">シャッフル</button>
-    <button id="addBtn" class="primary" disabled>＋ 追加</button>
+    <button id="shuffleBtn" title="Shuffle the current group">Shuffle</button>
+    <button id="addBtn" class="primary" disabled>+ Add</button>
     <details class="settings" id="settings">
-      <summary>設定</summary>
+      <summary>Settings</summary>
       <div class="settings-panel">
         <div>
-          <div class="label">出題の向き</div>
+          <div class="label">Card direction</div>
           <div class="seg" id="dirSeg">
-            <button data-dir="term" class="on">表→裏</button>
-            <button data-dir="answer">裏→表</button>
-            <button data-dir="mix">ミックス</button>
+            <button data-dir="term" class="on">Front → Back</button>
+            <button data-dir="answer">Back → Front</button>
+            <button data-dir="mix">Mixed</button>
           </div>
         </div>
-        <label class="check"><input id="skipEmpty" type="checkbox"> 答えなしを除く</label>
-        <label class="check"><input id="autoSpeak" type="checkbox" checked> 英語を自動再生</label>
+        <label class="check"><input id="skipEmpty" type="checkbox"> Hide cards without an answer</label>
+        <label class="check"><input id="autoSpeak" type="checkbox" checked> Read English aloud automatically</label>
         <div class="stack">
-          <div class="label">GitHub 接続（単語の追加に必要・端末ごとに1回）</div>
-          <input id="repoInput" type="text" placeholder="ユーザー名/リポジトリ名" autocapitalize="off" spellcheck="false" aria-label="リポジトリ">
-          <input id="tokenInput" type="password" placeholder="アクセストークン (github_pat_…)" autocomplete="off" aria-label="アクセストークン">
+          <div class="label">GitHub connection (needed to add words, once per device)</div>
+          <input id="repoInput" type="text" placeholder="username/repository" autocapitalize="off" spellcheck="false" aria-label="Repository">
+          <input id="tokenInput" type="password" placeholder="Access token (github_pat_…)" autocomplete="off" aria-label="Access token">
           <div class="row">
-            <button id="tokenSave" class="primary">保存して接続</button>
-            <button id="tokenClear">削除</button>
+            <button id="tokenSave" class="primary">Save and connect</button>
+            <button id="tokenClear">Remove</button>
           </div>
-          <div class="small" id="tokenStatus">未接続：閲覧のみできます。</div>
-          <div class="small"><a id="repoLink" href="#" target="_blank" rel="noopener">GitHub でファイルを開く</a></div>
+          <div class="small" id="tokenStatus">Not connected: you can study, but not add words.</div>
+          <div class="small"><a id="repoLink" href="#" target="_blank" rel="noopener">Open the word files on GitHub</a></div>
         </div>
       </div>
     </details>
@@ -193,10 +193,10 @@
 
 <main>
   <div class="card-wrap" id="cardWrap">
-    <div class="card" id="card" role="button" tabindex="0" aria-label="カードをめくる">
+    <div class="card" id="card" role="button" tabindex="0" aria-label="Flip card">
       <span class="side-label" id="sideLabel"></span>
-      <span class="badge" id="badge" hidden>答えなし</span>
-      <div class="term" id="frontText"><span class="empty-msg">単語を読み込んでいます…</span></div>
+      <span class="badge" id="badge" hidden>No answer</span>
+      <div class="term" id="frontText"><span class="empty-msg">Loading words…</span></div>
       <div id="revealArea" hidden style="width:100%">
         <div class="divider"></div>
         <div class="answer" id="answerText"></div>
@@ -204,38 +204,38 @@
       <div class="hint" id="hint"></div>
     </div>
     <div class="nav">
-      <button id="prevBtn" disabled>← 前</button>
+      <button id="prevBtn" disabled>← Prev</button>
       <span class="counter" id="counter">0 / 0</span>
-      <button id="nextBtn" class="primary" disabled>次 →</button>
-      <button id="speakBtn" disabled>発音</button>
+      <button id="nextBtn" class="primary" disabled>Next →</button>
+      <button id="speakBtn" disabled>Listen</button>
     </div>
     <div class="status" id="status" role="status"></div>
-    <div class="kbd"><b>Space</b> めくる · <b>→</b> 次 · <b>←</b> 前 · <b>S</b> シャッフル · <b>A</b> 追加</div>
+    <div class="kbd"><b>Space</b> flip · <b>→</b> next · <b>←</b> prev · <b>S</b> shuffle · <b>A</b> add</div>
   </div>
 </main>
 
 <div class="scrim" id="scrim" hidden></div>
 <form class="sheet" id="sheet" hidden autocomplete="off">
   <div class="sheet-head">
-    <h2>単語を追加</h2>
+    <h2>Add a word</h2>
     <div class="seg" id="addDeckSeg">
-      <button type="button" data-deck="word" class="on">英単語</button>
-      <button type="button" data-deck="jtoe">和→英</button>
+      <button type="button" data-deck="word" class="on">EN→JP</button>
+      <button type="button" data-deck="jtoe">JP→EN</button>
     </div>
   </div>
   <div class="field">
-    <label for="addFront" id="addFrontLabel">表（英語）</label>
+    <label for="addFront" id="addFrontLabel">Front (English)</label>
     <input id="addFront" type="text" enterkeyhint="next" autocapitalize="off" spellcheck="false">
   </div>
   <div class="field">
-    <label for="addBack" id="addBackLabel">裏（意味）— 空欄でも可</label>
+    <label for="addBack" id="addBackLabel">Back (meaning, optional)</label>
     <input id="addBack" type="text" enterkeyhint="done" autocapitalize="off" spellcheck="false">
   </div>
   <div class="preview" id="addPreview"></div>
   <div class="sheet-actions">
     <span class="sheet-msg" id="addMsg" role="status"></span>
-    <button type="button" id="addClose">閉じる</button>
-    <button type="submit" class="primary" id="addSubmit">追加</button>
+    <button type="button" id="addClose">Close</button>
+    <button type="submit" class="primary" id="addSubmit">Add</button>
   </div>
 </form>
 
@@ -244,10 +244,10 @@
 <script>
 (function(){
   "use strict";
-  // Word files live in the repo under words/. Each line is `表\答え`.
+  // Word files live in the repo under words/. Each line is `front\back`.
   var DECKS = {
-    word: {label:"英単語", path:"words/word.md", frontLabel:"表（英語）", backLabel:"裏（意味）— 空欄でも可"},
-    jtoe: {label:"和→英", path:"words/jtoe.md", frontLabel:"表（日本語）", backLabel:"裏（英語）— 空欄でも可"}
+    word: {label:"EN→JP", path:"words/word.md", frontLabel:"Front (English)", backLabel:"Back (meaning, optional)"},
+    jtoe: {label:"JP→EN", path:"words/jtoe.md", frontLabel:"Front (Japanese)", backLabel:"Back (English, optional)"}
   };
   var BRANCH = "main";
   var GROUP_SIZE = 100;
@@ -266,6 +266,14 @@
   }
   var repo = lsGet("fc_repo") || guessRepo();
   var token = lsGet("fc_token") || "";
+  // folder of this page inside the repo (e.g. "github-app/" when the app is not at the repo root)
+  var REPO_DIR = (function(){
+    if(!/^[^.]+\.github\.io$/i.test(location.hostname)) return "";
+    var p = location.pathname.split("/"); p.pop(); p = p.filter(Boolean);
+    var r = (repo.split("/")[1] || "").toLowerCase();
+    if(p[0] && p[0].toLowerCase() === r) p = p.slice(1);
+    return p.length ? p.map(decodeURIComponent).join("/") + "/" : "";
+  })();
 
   var deckTexts = {word:null, jtoe:null};
   var deckSha = {word:null, jtoe:null};
@@ -302,7 +310,7 @@
     if(voice) u.voice = voice;
     u.onerror = function(e){
       if(version !== speechVersion || e.error === "canceled" || e.error === "interrupted") return;
-      setStatus("音声を再生できません。「発音」を押してください", 4000);
+      setStatus("Couldn't play the audio. Tap Listen to try again.", 4000);
     };
     synth.speak(u);
   }
@@ -352,11 +360,11 @@
     for(var start=0; start<cards.length; start+=GROUP_SIZE){
       var o = document.createElement("option");
       o.value = String(start / GROUP_SIZE);
-      o.textContent = "グループ " + (start/GROUP_SIZE + 1) + "（" + (start+1) + "–" + Math.min(start+GROUP_SIZE, cards.length) + "）";
+      o.textContent = "Group " + (start/GROUP_SIZE + 1) + " (" + (start+1) + "–" + Math.min(start+GROUP_SIZE, cards.length) + ")";
       groupSelect.appendChild(o);
     }
     if(!cards.length){
-      var e = document.createElement("option"); e.value = "0"; e.textContent = "カードなし"; groupSelect.appendChild(e);
+      var e = document.createElement("option"); e.value = "0"; e.textContent = "No cards"; groupSelect.appendChild(e);
     }
     groupSelect.value = String(group);
     groupSelect.disabled = cards.length === 0;
@@ -408,15 +416,15 @@
   function render(fresh){
     fresh = fresh !== false;
     if(!loaded) return;
-    stats.textContent = DECKS[deck].label + " 全 " + cards.length + " 枚 · 対象 " + order.length + " 枚";
+    stats.textContent = DECKS[deck].label + " · " + cards.length + " cards · " + order.length + " in this set";
     el("prevBtn").disabled = el("nextBtn").disabled = order.length === 0;
     if(order.length === 0){
       updateAudio("", true);
       counter.textContent = "0 / 0";
       revealArea.hidden = true; badge.hidden = true; sideLabel.textContent = "";
       frontText.innerHTML = cards.length
-        ? '<span class="empty-msg">このグループには表示できるカードがありません。<br>別のグループを選ぶか「答えなしを除く」を外してください。</span>'
-        : '<span class="empty-msg">まだカードがありません。<br>「＋ 追加」から最初の単語を登録してください。</span>';
+        ? '<span class="empty-msg">No cards to show in this group.<br>Pick another group or turn off "Hide cards without an answer".</span>'
+        : '<span class="empty-msg">No cards yet.<br>Use "+ Add" to add your first word.</span>';
       hint.textContent = "";
       return;
     }
@@ -430,17 +438,17 @@
     var englishAnswer = revealed && backExists && isEnglish(back);
     updateAudio(englishAnswer ? back : (isEnglish(front) ? front : ""), fresh || englishAnswer);
 
-    sideLabel.textContent = showTerm ? "表" : "裏";
+    sideLabel.textContent = showTerm ? "FRONT" : "BACK";
     frontText.textContent = front;
     badge.hidden = backExists;
     if(revealed){
       revealArea.hidden = false;
-      answerText.textContent = backExists ? back : "（答えなし）";
+      answerText.textContent = backExists ? back : "(no answer)";
       answerText.className = backExists ? "answer" : "answer none";
-      hint.textContent = "タップ / → で次へ";
+      hint.textContent = "Tap or press → for the next card";
     } else {
       revealArea.hidden = true;
-      hint.textContent = backExists ? "タップ / スペースでめくる" : "答えなし — タップで確認";
+      hint.textContent = backExists ? "Tap or press Space to flip" : "No answer · tap to check";
     }
     counter.textContent = (pos+1) + " / " + order.length;
   }
@@ -490,7 +498,7 @@
   // With a token: read straight from the repo (always fresh). Without: read the copy GitHub Pages serves.
   function fetchDeck(d){
     if(token && repo){
-      return api("/contents/" + DECKS[d].path + "?ref=" + BRANCH).then(function(j){
+      return api("/contents/" + REPO_DIR + DECKS[d].path + "?ref=" + BRANCH).then(function(j){
         deckSha[d] = j.sha;
         return b64ToUtf8(j.content || "");
       });
@@ -512,19 +520,19 @@
         lsSet("fc_cache_" + r[0], r[1]);
       });
       if(failed){
-        if(failed.status === 401) setStatus("トークンが無効です。設定から登録し直してください。");
-        else setStatus("最新の単語を取得できませんでした。保存済みのデータを表示しています。", 6000);
+        if(failed.status === 401) setStatus("Your token is invalid. Enter a new one in Settings.");
+        else setStatus("Couldn't load the latest words. Showing your saved copy.", 6000);
       } else setStatus("");
       return changedCurrent;
     });
   }
 
   function appendLine(d, line, retried){
-    return api("/contents/" + DECKS[d].path + "?ref=" + BRANCH).then(function(j){
+    return api("/contents/" + REPO_DIR + DECKS[d].path + "?ref=" + BRANCH).then(function(j){
       var text = b64ToUtf8(j.content || "");
       if(text && !/\n$/.test(text)) text += "\n";
       text += line + "\n";
-      return api("/contents/" + DECKS[d].path, {
+      return api("/contents/" + REPO_DIR + DECKS[d].path, {
         method: "PUT",
         body: JSON.stringify({message: "Add: " + line.split("\\")[0], content: utf8ToB64(text), sha: j.sha, branch: BRANCH})
       }).then(function(res){
@@ -597,34 +605,34 @@
   function refreshConnUI(){
     repoInput.value = repo;
     tokenInput.value = "";
-    tokenInput.placeholder = token ? "登録済み（変更する場合のみ入力）" : "アクセストークン (github_pat_…)";
-    el("repoLink").href = repo ? "https://github.com/" + repo + "/tree/" + BRANCH + "/words" : "https://github.com";
-    tokenStatus.textContent = token ? "接続済み：この端末から単語を追加できます。" : "未接続：閲覧のみできます。";
+    tokenInput.placeholder = token ? "Saved (enter a new one only to change it)" : "Access token (github_pat_…)";
+    el("repoLink").href = repo ? "https://github.com/" + repo + "/tree/" + BRANCH + "/" + REPO_DIR + "words" : "https://github.com";
+    tokenStatus.textContent = token ? "Connected: you can add words from this device." : "Not connected: you can study, but not add words.";
   }
   el("tokenSave").addEventListener("click", function(){
     var r = repoInput.value.trim().replace(/^https?:\/\/github\.com\//i, "").replace(/\/+$/, "");
     var t = tokenInput.value.trim() || token;
-    if(!/^[\w.-]+\/[\w.-]+$/.test(r)){ tokenStatus.textContent = "リポジトリは「ユーザー名/リポジトリ名」の形で入力してください。"; return; }
-    if(!t){ tokenStatus.textContent = "アクセストークンを入力してください。"; return; }
-    tokenStatus.textContent = "確認中…";
+    if(!/^[\w.-]+\/[\w.-]+$/.test(r)){ tokenStatus.textContent = "Enter the repository as username/repository."; return; }
+    if(!t){ tokenStatus.textContent = "Enter an access token."; return; }
+    tokenStatus.textContent = "Checking…";
     var oldRepo = repo, oldToken = token;
     repo = r; token = t;
     api("").then(function(j){
       if(j && j.permissions && j.permissions.push === false) throw Object.assign(new Error("no push"), {status:403});
       lsSet("fc_repo", repo); lsSet("fc_token", token);
       refreshConnUI();
-      toast("GitHub に接続しました");
+      toast("Connected to GitHub");
       return loadAll().then(function(changed){ if(changed) selectDeck(deck, true); });
     }).catch(function(err){
       repo = oldRepo; token = oldToken;
-      tokenStatus.textContent = err.status === 401 ? "トークンが正しくありません。"
-        : err.status === 404 ? "リポジトリが見つかりません。名前とトークンの対象リポジトリを確認してください。"
-        : err.status === 403 ? "このトークンには書き込み権限がありません（Contents: Read and write が必要）。"
-        : "接続できませんでした。通信状態を確認してください。";
+      tokenStatus.textContent = err.status === 401 ? "This token isn't valid."
+        : err.status === 404 ? "Repository not found. Check the name and that the token has access to this repository."
+        : err.status === 403 ? "This token can't write to the repository (it needs Contents: Read and write)."
+        : "Couldn't connect. Check your internet connection.";
     });
   });
   el("tokenClear").addEventListener("click", function(){
-    token = ""; lsSet("fc_token", null); refreshConnUI(); toast("この端末のトークンを削除しました");
+    token = ""; lsSet("fc_token", null); refreshConnUI(); toast("Token removed from this device");
   });
 
   // ---------- quick-add ----------
@@ -646,13 +654,13 @@
   }
   function updatePreview(){
     var line = buildLine();
-    el("addPreview").textContent = line ? DECKS[addDeck].path + " に追加: " + line : "";
+    el("addPreview").textContent = line ? "Adds to " + DECKS[addDeck].path + ": " + line : "";
   }
   function setMsg(text, kind){ addMsg.textContent = text || ""; addMsg.className = "sheet-msg" + (kind ? " " + kind : ""); }
   function openSheet(){
     if(!token){
       el("settings").open = true;
-      tokenStatus.textContent = "単語を追加するには、まずこの端末で GitHub に接続してください。";
+      tokenStatus.textContent = "To add words, connect this device to GitHub first.";
       (repo ? tokenInput : repoInput).focus();
       return;
     }
@@ -682,23 +690,23 @@
     e.preventDefault();
     if(busy) return;
     var line = buildLine();
-    if(!line){ setMsg("表の欄を入力してください", "warn"); addFront.focus(); return; }
+    if(!line){ setMsg("Fill in the front first.", "warn"); addFront.focus(); return; }
     var front = line.split("\\")[0];
     var existing = parse(deckTexts[addDeck]).some(function(c){ return c.term.toLowerCase() === front.toLowerCase(); });
     if(existing && dupArmed !== front){
       dupArmed = front;
-      setMsg("「" + front + "」は既にあります。もう一度押すと追加します", "warn");
+      setMsg("\"" + front + "\" is already in this deck. Press Add again to add it anyway.", "warn");
       return;
     }
-    busy = true; el("addSubmit").disabled = true; setMsg("保存中…");
+    busy = true; el("addSubmit").disabled = true; setMsg("Saving…");
     appendLine(addDeck, line).then(function(){
-      setMsg("追加しました: " + front, "ok");
+      setMsg("Added: " + front, "ok");
       addFront.value = ""; addBack.value = ""; dupArmed = ""; updatePreview();
       addFront.focus();
     }).catch(function(err){
-      if(err.status === 401) setMsg("トークンが無効です。設定から登録し直してください。", "warn");
-      else if(err.status === 403 || err.status === 404) setMsg("書き込み権限がありません。トークンの設定を確認してください。", "warn");
-      else setMsg("保存できませんでした。通信状態を確認してもう一度押してください。", "warn");
+      if(err.status === 401) setMsg("Your token is invalid. Enter a new one in Settings.", "warn");
+      else if(err.status === 403 || err.status === 404) setMsg("No permission to save. Check your token settings.", "warn");
+      else setMsg("Couldn't save. Check your connection and press Add again.", "warn");
     }).then(function(){ busy = false; el("addSubmit").disabled = false; });
   });
 
