@@ -842,3 +842,4 @@ bug me\悩ませる
 phone that you flinged out\飾りつけた携帯
 artillery\大砲
 hideous\非常に醜い
+butt\武器の太い方の端
