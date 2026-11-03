@@ -844,3 +844,4 @@ artillery\大砲
 hideous\非常に醜い
 butt\武器の太い方の端
 couch ate my pizza\寝椅子
+slippery\滑る
