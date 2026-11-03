@@ -840,3 +840,4 @@ mustache\口ひげ
 slug down\急いで飲み干す
 bug me\悩ませる
 phone that you flinged out\飾りつけた携帯
+artillery\大砲
