@@ -837,3 +837,4 @@ limp\片足を引きつる
 fuse\融合する
 down to earth\地に足ついた
 mustache\口ひげ
+slug down\急いで飲み干す
