@@ -157,3 +157,4 @@ feel secure in my finance\
 変えるのもあり\I'm open to change
 制限を緩和する\ease restrictions
 期待に応える\deliver
+〜する見込み\i'm on track to graduate next year
