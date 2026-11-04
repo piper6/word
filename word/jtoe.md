@@ -156,3 +156,4 @@ feel secure in my finance\
 商業施設\shopping complex
 変えるのもあり\I'm open to change
 制限を緩和する\ease restrictions
+期待に応える\deliver
