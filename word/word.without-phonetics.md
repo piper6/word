@@ -845,3 +845,4 @@ hideous\非常に醜い
 butt\武器の太い方の端
 couch ate my pizza\寝椅子
 slippery\滑る
+I can squeeze you in at 3 p.m.\時間を何とか作れる
