@@ -848,3 +848,4 @@ slippery\滑る
 I can squeeze you in at 3 p.m.\時間を何とか作れる
 jerk\引っ張る
 diaper\おむつ
+stagger\よろめく
