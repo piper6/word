@@ -159,3 +159,4 @@ feel secure in my finance\
 期待に応える\deliver
 〜する見込み\i'm on track to graduate next year
 ダラダラする\drag out
+定性分析\qualitative analysis
