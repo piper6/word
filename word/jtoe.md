@@ -160,3 +160,4 @@ feel secure in my finance\
 〜する見込み\i'm on track to graduate next year
 ダラダラする\drag out
 定性分析\qualitative analysis
+帳消しにする\negate the benefit
