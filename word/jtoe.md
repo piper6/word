@@ -161,3 +161,4 @@ feel secure in my finance\
 ダラダラする\drag out
 定性分析\qualitative analysis
 帳消しにする\negate the benefit
+舐めた態度\cocky attitude
