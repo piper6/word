@@ -850,3 +850,4 @@ jerk\引っ張る
 diaper\おむつ
 stagger\よろめく
 bosom\(女性の)胸
+gourmet\食通
