@@ -853,3 +853,4 @@ bosom\(女性の)胸
 gourmet\食通
 bail\保釈
 that's a stretch\無理がある
+swirl\渦を巻く
