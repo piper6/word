@@ -867,3 +867,4 @@ stapler\ホッチキス
 prank\ドッキリ、イタズラ
 stoop\かがむ/階段
 fussy\好き嫌いの多い
+brake\ブレーキをかける
