@@ -163,3 +163,4 @@ feel secure in my finance\
 帳消しにする\negate the benefit
 舐めた態度\cocky attitude
 ストレスを発散する\blow off stream
+仕事のリズム\cadence of work
