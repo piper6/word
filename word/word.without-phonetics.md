@@ -861,3 +861,4 @@ push someone's buttons\怒らせる、いらだたせる
 open slot\空き枠
 crack the code\謎を解く、コツを掴む
 civil engineering\土木工学
+I got swept up in the moment.\流された
