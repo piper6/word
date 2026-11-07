@@ -164,3 +164,4 @@ feel secure in my finance\
 舐めた態度\cocky attitude
 ストレスを発散する\blow off stream
 仕事のリズム\cadence of work
+唐突な、よく分からない請求\random charge
