@@ -860,3 +860,4 @@ fable\寓話
 push someone's buttons\怒らせる、いらだたせる
 open slot\空き枠
 crack the code\謎を解く、コツを掴む
+civil engineering\土木工学
