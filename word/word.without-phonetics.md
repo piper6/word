@@ -856,3 +856,4 @@ that's a stretch\無理がある
 swirl\渦を巻く
 pathetic\哀れな
 you are rocking those shades\サングラス似合ってる
+fable\寓話
