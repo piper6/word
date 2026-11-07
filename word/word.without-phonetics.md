@@ -865,3 +865,4 @@ I got swept up in the moment.\流された
 gag(gaggedで)\言論弾圧、驚愕して言葉を失う
 stapler\ホッチキス
 prank\ドッキリ、イタズラ
+stoop\かがむ/階段
