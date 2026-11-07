@@ -167,3 +167,4 @@ feel secure in my finance\
 唐突な、よく分からない請求\random charge
 攻めた、大胆な意見\hot take
 使用率に偏り\imbalance in
+アメリカ経済の今後の見通し\outlook for
