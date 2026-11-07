@@ -165,3 +165,4 @@ feel secure in my finance\
 ストレスを発散する\blow off stream
 仕事のリズム\cadence of work
 唐突な、よく分からない請求\random charge
+攻めた、大胆な意見\hot take
