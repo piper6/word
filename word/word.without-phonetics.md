@@ -858,3 +858,4 @@ pathetic\哀れな
 you are rocking those shades\サングラス似合ってる
 fable\寓話
 push someone's buttons\怒らせる、いらだたせる
+open slot\空き枠
