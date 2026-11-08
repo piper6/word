@@ -173,3 +173,4 @@ feel secure in my finance\
 大げさに\exaggeratedly
 (食事で)量が多い\the portions are huge
 地元住民\local residents
+ポイ捨て\littering
