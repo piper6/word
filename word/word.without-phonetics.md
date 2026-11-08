@@ -869,3 +869,4 @@ stoop\かがむ/階段
 fussy\好き嫌いの多い
 brake\ブレーキをかける
 ai has come a long way\大きく進歩した
+petal\花びら
