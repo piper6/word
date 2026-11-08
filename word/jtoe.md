@@ -174,3 +174,4 @@ feel secure in my finance\
 (食事で)量が多い\the portions are huge
 地元住民\local residents
 ポイ捨て\littering
+非日常\something out of ordinary
