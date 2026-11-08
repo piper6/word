@@ -172,3 +172,4 @@ feel secure in my finance\
 ネイティブに近づく\get closer to speaking like
 大げさに\exaggeratedly
 (食事で)量が多い\the portions are huge
+地元住民\local residents
