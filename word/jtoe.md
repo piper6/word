@@ -169,3 +169,4 @@ feel secure in my finance\
 使用率に偏り\imbalance in
 アメリカ経済の今後の見通し\outlook for
 意識的にタンパク質を取る\Make a conscious effort to eat more protein
+ネイティブに近づく\get closer to speaking like
