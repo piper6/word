@@ -171,3 +171,4 @@ feel secure in my finance\
 意識的にタンパク質を取る\Make a conscious effort to eat more protein
 ネイティブに近づく\get closer to speaking like
 大げさに\exaggeratedly
+(食事で)量が多い\the portions are huge
