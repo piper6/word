@@ -873,3 +873,4 @@ petal\花びら
 proprietary brand\独占ブランド
 energy is contagious\伝染性の、人から人にうつる
 spoilage\腐敗
+ripple\さざなみ
