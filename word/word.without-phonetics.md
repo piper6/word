@@ -871,3 +871,4 @@ brake\ブレーキをかける
 ai has come a long way\大きく進歩した
 petal\花びら
 proprietary brand\独占ブランド
+energy is contagious\伝染性の、人から人にうつる
