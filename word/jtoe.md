@@ -170,3 +170,4 @@ feel secure in my finance\
 アメリカ経済の今後の見通し\outlook for
 意識的にタンパク質を取る\Make a conscious effort to eat more protein
 ネイティブに近づく\get closer to speaking like
+大げさに\exaggeratedly
