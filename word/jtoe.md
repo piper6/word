@@ -178,3 +178,4 @@ feel secure in my finance\
 資金を調達する\raise money
 〜と共に\together with
 すぐに(2語)\right away
+期間限定セール\limited-time offer
