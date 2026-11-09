@@ -880,3 +880,4 @@ numb\かじかんだ、無感覚な
 up in the air\uncertain
 condense\凝縮させる、ようやくする
 prose\散文
+bowel\腸
