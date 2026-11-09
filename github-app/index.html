@@ -138,10 +138,12 @@
   .sheet-msg{font-size:12px;margin-right:auto;min-width:0}
   .sheet-msg.ok{color:var(--accent2)}
   .sheet-msg.warn{color:var(--warn)}
+  button.danger{color:var(--warn);border-color:var(--warn-border);background:var(--warn-bg)}
+  button.danger.armed{background:var(--warn);color:var(--panel);border-color:var(--warn)}
   .preview{font-size:12px;color:var(--muted);font-family:ui-monospace,SFMono-Regular,Consolas,monospace;word-break:break-all}
   .toast{
     position:fixed;left:50%;transform:translateX(-50%);
-    bottom:calc(20px + env(safe-area-inset-bottom, 0px));z-index:50;
+    top:calc(16px + env(safe-area-inset-top, 0px));z-index:50;
     background:var(--text);color:var(--bg);padding:10px 16px;border-radius:12px;font-size:13px;
     box-shadow:var(--shadow);max-width:calc(100% - 32px);
   }
@@ -166,6 +168,7 @@
     </select>
     <button id="shuffleBtn" title="Shuffle the current group">Shuffle</button>
     <button id="addBtn" class="primary" disabled>+ Add</button>
+    <button id="editBtn" disabled title="Edit or delete the card on screen">Edit</button>
     <details class="settings" id="settings">
       <summary>Settings</summary>
       <div class="settings-panel">
@@ -214,14 +217,14 @@
       <button id="speakBtn" disabled>Listen</button>
     </div>
     <div class="status" id="status" role="status"></div>
-    <div class="kbd"><b>Space</b> flip · <b>→</b> next · <b>←</b> prev · <b>S</b> shuffle · <b>A</b> add</div>
+    <div class="kbd"><b>Space</b> flip · <b>→</b> next · <b>←</b> prev · <b>S</b> shuffle · <b>A</b> add · <b>E</b> edit</div>
   </div>
 </main>
 
 <div class="scrim" id="scrim" hidden></div>
 <form class="sheet" id="sheet" hidden autocomplete="off">
   <div class="sheet-head">
-    <h2>Add a word</h2>
+    <h2 id="sheetTitle">Add a word</h2>
     <div class="seg" id="addDeckSeg">
       <button type="button" data-deck="word" class="on">EN→JP</button>
       <button type="button" data-deck="jtoe">JP→EN</button>
@@ -238,6 +241,7 @@
   <div class="preview" id="addPreview"></div>
   <div class="sheet-actions">
     <span class="sheet-msg" id="addMsg" role="status"></span>
+    <button type="button" id="delBtn" class="danger" hidden>Delete</button>
     <button type="button" id="addClose">Close</button>
     <button type="submit" class="primary" id="addSubmit">Add</button>
   </div>
@@ -342,7 +346,7 @@
 
   // ---------- parsing ----------
   function parse(text){
-    var out = [];
+    var out = [], seen = {};
     var lines = (text || "").split(/\r?\n/);
     for(var i=0;i<lines.length;i++){
       var line = lines[i].replace(/\s+$/,"");
@@ -353,7 +357,8 @@
       if(idx === -1){ term = core; answer = ""; }
       else { term = line.slice(0,idx).trim(); answer = line.slice(idx+1).trim(); }
       if(term === "" && answer === "") continue;
-      out.push({term:term, answer:answer, hasAnswer: answer.length>0});
+      seen[line] = (seen[line] || 0) + 1;
+      out.push({term:term, answer:answer, hasAnswer: answer.length>0, raw:line, occ:seen[line]});
     }
     return out;
   }
@@ -422,7 +427,7 @@
     fresh = fresh !== false;
     if(!loaded) return;
     stats.textContent = DECKS[deck].label + " · " + cards.length + " cards · " + order.length + " in this set";
-    el("prevBtn").disabled = el("nextBtn").disabled = order.length === 0;
+    el("prevBtn").disabled = el("nextBtn").disabled = el("editBtn").disabled = order.length === 0;
     if(order.length === 0){
       updateAudio("", true);
       counter.textContent = "0 / 0";
@@ -553,6 +558,32 @@
     });
   }
 
+  // Replace (newLine) or delete (newLine === null) one card's line in the file.
+  function editLine(d, card, newLine, retried){
+    return api("/contents/" + DECKS[d].path + "?ref=" + BRANCH).then(function(j){
+      var text = b64ToUtf8(j.content || "");
+      var lines = text.split("\n"), n = 0, at = -1;
+      for(var i=0;i<lines.length;i++){
+        if(lines[i].replace(/\s+$/,"") === card.raw && ++n === card.occ){ at = i; break; }
+      }
+      if(at < 0){ var gone = new Error("gone"); gone.status = "gone"; throw gone; }
+      var label = card.raw.split("\\")[0];
+      if(newLine === null) lines.splice(at, 1);
+      else lines[at] = newLine + (/\r$/.test(lines[at]) ? "\r" : "");
+      var updated = lines.join("\n");
+      return api("/contents/" + DECKS[d].path, {
+        method: "PUT",
+        body: JSON.stringify({message: (newLine === null ? "Delete: " : "Edit: ") + label, content: utf8ToB64(updated), sha: j.sha, branch: BRANCH})
+      }).then(function(res){
+        deckTexts[d] = updated; deckSha[d] = res && res.content ? res.content.sha : null;
+        lsSet("fc_cache_" + d, updated);
+      });
+    }).catch(function(err){
+      if(!retried && (err.status === 409 || err.status === 422)) return editLine(d, card, newLine, true);
+      throw err;
+    });
+  }
+
   // ---------- events ----------
   el("card").addEventListener("click", flip);
   el("card").addEventListener("keydown", function(e){ if(e.key === "Enter"){ e.preventDefault(); flip(); } });
@@ -589,6 +620,7 @@
     else if(e.code === "ArrowLeft"){ prev(); }
     else if(e.key === "s" || e.key === "S"){ shuffle(); render(); }
     else if((e.key === "a" || e.key === "A") && !el("addBtn").disabled){ e.preventDefault(); openSheet(); }
+    else if((e.key === "e" || e.key === "E") && !el("editBtn").disabled){ e.preventDefault(); openSheet("edit"); }
   });
   (function(){
     var x0 = null, y0 = null, card = el("card");
@@ -642,7 +674,7 @@
   });
 
   // ---------- quick-add ----------
-  var addDeck = deck, dupArmed = "";
+  var addDeck = deck, dupArmed = "", mode = "add", editIdx = -1, editCard = null, delArmed = false;
   var addFront = el("addFront"), addBack = el("addBack"), addMsg = el("addMsg");
   function setAddDeck(d){
     addDeck = d; dupArmed = "";
@@ -660,30 +692,48 @@
   }
   function updatePreview(){
     var line = buildLine();
-    el("addPreview").textContent = line ? "Adds to " + DECKS[addDeck].path + ": " + line : "";
+    el("addPreview").textContent = !line ? "" : (mode === "edit" ? "Saves to " : "Adds to ") + DECKS[addDeck].path + ": " + line;
   }
   function setMsg(text, kind){ addMsg.textContent = text || ""; addMsg.className = "sheet-msg" + (kind ? " " + kind : ""); }
-  function openSheet(){
+  function setDelArmed(on){
+    delArmed = on;
+    el("delBtn").classList.toggle("armed", on);
+    el("delBtn").textContent = on ? "Tap again to delete" : "Delete";
+  }
+  function openSheet(m){
     if(!token){
       el("settings").open = true;
-      tokenStatus.textContent = "To add words, connect this device to GitHub first.";
+      tokenStatus.textContent = "To add or edit words, connect this device to GitHub first.";
       (repo ? tokenInput : repoInput).focus();
       return;
     }
-    setAddDeck(deck); setMsg("");
+    mode = m === "edit" ? "edit" : "add";
+    if(mode === "edit"){
+      if(!order.length) return;
+      editIdx = order[pos]; editCard = cards[editIdx];
+    }
+    setAddDeck(deck); setMsg(""); setDelArmed(false);
+    el("sheetTitle").textContent = mode === "edit" ? "Edit this word" : "Add a word";
+    el("addDeckSeg").hidden = mode === "edit";
+    el("delBtn").hidden = mode !== "edit";
+    el("addSubmit").textContent = mode === "edit" ? "Save" : "Add";
+    addFront.value = mode === "edit" ? editCard.term : "";
+    addBack.value = mode === "edit" ? editCard.answer : "";
+    updatePreview();
     el("scrim").hidden = false; el("sheet").hidden = false;
     el("settings").open = false;
     setTimeout(function(){ addFront.focus(); }, 30);
   }
   function closeSheet(){ el("scrim").hidden = true; el("sheet").hidden = true; el("addBtn").focus(); }
   el("addBtn").addEventListener("click", function(e){ e.stopPropagation(); openSheet(); });
+  el("editBtn").addEventListener("click", function(e){ e.stopPropagation(); openSheet("edit"); });
   el("addClose").addEventListener("click", closeSheet);
   el("scrim").addEventListener("click", closeSheet);
   el("addDeckSeg").addEventListener("click", function(e){
     var b = e.target.closest("button"); if(b){ setAddDeck(b.getAttribute("data-deck")); addFront.focus(); }
   });
-  addFront.addEventListener("input", function(){ dupArmed = ""; setMsg(""); updatePreview(); });
-  addBack.addEventListener("input", updatePreview);
+  addFront.addEventListener("input", function(){ dupArmed = ""; setDelArmed(false); setMsg(""); updatePreview(); });
+  addBack.addEventListener("input", function(){ setDelArmed(false); updatePreview(); });
   addFront.addEventListener("keydown", function(e){
     if(e.key === "Enter" && !e.isComposing){ e.preventDefault(); addBack.focus(); }
   });
@@ -692,11 +742,46 @@
   });
 
   var busy = false;
+  function saveError(err){
+    if(err.status === "gone") setMsg("This card was changed on another device. Close this, reload the page and try again.", "warn");
+    else if(err.status === 401) setMsg("Your token is invalid. Enter a new one in Settings.", "warn");
+    else if(err.status === 403 || err.status === 404) setMsg("No permission to save. Check your token settings.", "warn");
+    else setMsg("Couldn't save. Check your connection and try again.", "warn");
+  }
+  function runEdit(newLine){
+    busy = true; el("addSubmit").disabled = el("delBtn").disabled = true;
+    setMsg(newLine === null ? "Deleting…" : "Saving…");
+    var d = addDeck, ci = editIdx;
+    editLine(d, editCard, newLine).then(function(){
+      if(d === deck){
+        if(newLine === null){
+          // drop the deleted card and shift later indices so the current order stays valid
+          order = order.filter(function(i){ return i !== ci; }).map(function(i){ return i > ci ? i - 1 : i; });
+          if(pos >= order.length) pos = Math.max(0, order.length - 1);
+        }
+        revealed = newLine !== null && revealed;
+        selectDeck(deck, true);
+      }
+      toast(newLine === null ? "Deleted" : "Saved");
+      closeSheet();
+    }).catch(saveError).then(function(){ busy = false; el("addSubmit").disabled = el("delBtn").disabled = false; });
+  }
+  el("delBtn").addEventListener("click", function(){
+    if(busy || mode !== "edit") return;
+    if(!delArmed){ setDelArmed(true); setMsg(""); return; }
+    setDelArmed(false);
+    runEdit(null);
+  });
   el("sheet").addEventListener("submit", function(e){
     e.preventDefault();
     if(busy) return;
     var line = buildLine();
     if(!line){ setMsg("Fill in the front first.", "warn"); addFront.focus(); return; }
+    if(mode === "edit"){
+      if(line === editCard.raw.trim()){ closeSheet(); return; }
+      runEdit(line);
+      return;
+    }
     var front = line.split("\\")[0];
     var existing = parse(deckTexts[addDeck]).some(function(c){ return c.term.toLowerCase() === front.toLowerCase(); });
     if(existing && dupArmed !== front){
