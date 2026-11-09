@@ -877,3 +877,4 @@ ripple\さざなみ
 petty\心が狭い/とるにたりない
 zone out\ボーッとする
 numb\かじかんだ、無感覚な
+up in the air\uncertain
