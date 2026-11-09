@@ -876,3 +876,4 @@ spoilage\腐敗
 ripple\さざなみ
 petty\心が狭い/とるにたりない
 zone out\ボーッとする
+numb\かじかんだ、無感覚な
