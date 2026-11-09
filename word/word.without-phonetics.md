@@ -875,3 +875,4 @@ energy is contagious\伝染性の、人から人にうつる
 spoilage\腐敗
 ripple\さざなみ
 petty\心が狭い/とるにたりない
+zone out\ボーッとする
