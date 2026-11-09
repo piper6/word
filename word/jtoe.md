@@ -176,3 +176,4 @@ feel secure in my finance\
 ポイ捨て\littering
 非日常\something out of the ordinary
 資金を調達する\raise money
+〜と共に\together with
