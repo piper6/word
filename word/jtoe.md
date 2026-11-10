@@ -184,3 +184,4 @@ feel secure in my finance\
 入院する\be hospitalized
 介護/介護士\caregiving caregiver
 道を歩く\walk down the road
+それなりの品質の\decent-quality
