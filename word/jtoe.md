@@ -185,3 +185,4 @@ feel secure in my finance\
 介護/介護士\caregiving caregiver
 道を歩く\walk down the road
 それなりの品質の\decent-quality
+天井が高い\it has a higher performance ceiling
