@@ -179,3 +179,4 @@ feel secure in my finance\
 〜と共に\together with
 すぐに(2語)\right away
 期間限定セール\limited-time offer
+下見\check out
