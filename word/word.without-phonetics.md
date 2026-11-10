@@ -883,3 +883,4 @@ prose\散文
 bowel\腸
 seduce\誘惑する
 slander\中傷
+adjourn\休会、散会する
