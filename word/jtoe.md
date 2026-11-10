@@ -181,4 +181,4 @@ feel secure in my finance\
 期間限定セール\limited-time offer
 下見\check out
 反論する/言い返す\argue back
-入院する\hospitalize
+入院する\be hospitalized
