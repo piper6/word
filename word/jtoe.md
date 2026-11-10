@@ -183,3 +183,4 @@ feel secure in my finance\
 反論する/言い返す\argue back
 入院する\be hospitalized
 介護/介護士\caregiving caregiver
+道を歩く\walk down the road
