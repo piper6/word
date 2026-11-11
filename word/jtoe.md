@@ -188,3 +188,4 @@ feel secure in my finance\
 天井が高い\it has a higher performance ceiling
 協力して\collaboratively
 写真が横に並んでいる\The pictures are arranged horizontally./vertically
+闇雲に\blindly
