@@ -885,3 +885,4 @@ seduce\誘惑する
 slander\中傷
 adjourn\休会、散会する
 frolic\戯れる
+premiere\初演
