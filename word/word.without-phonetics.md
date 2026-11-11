@@ -888,3 +888,4 @@ frolic\戯れる
 premiere\初演
 rover\流浪者
 stump,stumped\切り株、困る
+rehearse\リハーサルをする
