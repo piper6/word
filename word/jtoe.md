@@ -187,3 +187,4 @@ feel secure in my finance\
 それなりの品質の\decent-quality
 天井が高い\it has a higher performance ceiling
 協力して\collaboratively
+写真が横に並んでいる\The pictures are arranged horizontally./vertically
