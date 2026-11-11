@@ -887,3 +887,4 @@ adjourn\休会、散会する
 frolic\戯れる
 premiere\初演
 rover\流浪者
+stump,stumped\切り株、困る
