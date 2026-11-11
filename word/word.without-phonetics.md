@@ -886,3 +886,4 @@ slander\中傷
 adjourn\休会、散会する
 frolic\戯れる
 premiere\初演
+rover\流浪者
