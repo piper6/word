@@ -192,3 +192,4 @@ feel secure in my finance\
 目を丸くする\roll one's eyes at me
 直感に反する\go against my intuition
 一泊する\stay one night
+察して\read the room
