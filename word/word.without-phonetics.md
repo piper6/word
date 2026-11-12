@@ -896,3 +896,4 @@ dew\霧、しずく
 be pissed off\ムカついている
 oblivion\忘却
 ammunition\弾薬
+intercept\遮る
