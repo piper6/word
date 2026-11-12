@@ -898,3 +898,4 @@ oblivion\忘却
 ammunition\弾薬
 intercept\遮る
 crumple\しわくちゃにする
+hard and fast rule\厳格なルール
