@@ -891,3 +891,4 @@ stump,stumped\切り株、困る
 rehearse\リハーサルをする
 hotbed\温床
 substantive discussion\本質に迫る議論
+random static\突然の雑音
