@@ -195,3 +195,4 @@ feel secure in my finance\
 察して\read the room
 病気が重い/軽い\severe mild
 金額をぼかす\be vague about
+自発的に\on my own initiative
