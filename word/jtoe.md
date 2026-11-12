@@ -191,3 +191,4 @@ feel secure in my finance\
 闇雲に\blindly
 目を丸くする\roll one's eyes at me
 直感に反する\go against my intuition
+一泊する\stay one night
