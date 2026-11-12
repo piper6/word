@@ -194,3 +194,4 @@ feel secure in my finance\
 一泊する\stay one night
 察して\read the room
 病気が重い/軽い\severe mild
+金額をぼかす\be vague about
