@@ -193,3 +193,4 @@ feel secure in my finance\
 直感に反する\go against my intuition
 一泊する\stay one night
 察して\read the room
+病気が重い/軽い\severe mild
