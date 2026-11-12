@@ -895,3 +895,4 @@ random static\突然の雑音
 dew\霧、しずく
 be pissed off\ムカついている
 oblivion\忘却
+ammunition\弾薬
