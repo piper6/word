@@ -197,3 +197,4 @@ feel secure in my finance\
 金額をぼかす\be vague about
 自発的に\on my own initiative
 環境問題に対して積極的に行動する\take action actively to address environmental issues
+〜に対する自信、信頼\confidence in
