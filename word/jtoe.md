@@ -207,3 +207,4 @@ feel secure in my finance\
 閉店する\close down
 声量を上げる/下げる\raise lower
 手間を省く\save time and effort
+インデックス　個別株\index fund individual stock
