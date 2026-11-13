@@ -901,3 +901,4 @@ crumple\しわくちゃにする
 hard and fast rule\厳格なルール
 flicker\ちらちらする、明滅する
 belly\お腹
+touchy subject\触れにくい話題
