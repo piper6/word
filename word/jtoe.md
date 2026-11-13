@@ -203,3 +203,4 @@ feel secure in my finance\
 受験者\test taker
 四択問題\multiple-choice question
 非常識\inconsiderate
+別の選択肢を探した\I looked for other options.
