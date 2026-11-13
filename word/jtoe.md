@@ -200,3 +200,4 @@ feel secure in my finance\
 〜に対する自信、信頼\confidence in
 良くも悪くも\for better or worse
 奇跡的に\miraculously
+受験者\test taker
