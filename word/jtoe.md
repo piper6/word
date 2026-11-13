@@ -208,3 +208,4 @@ feel secure in my finance\
 声量を上げる/下げる\raise lower
 手間を省く\save time and effort
 インデックス　個別株\index fund individual stock
+3食分のビタミン\three meals' worth of vitamins
