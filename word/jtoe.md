@@ -201,3 +201,4 @@ feel secure in my finance\
 良くも悪くも\for better or worse
 奇跡的に\miraculously
 受験者\test taker
+四択問題\multiple-choice question
