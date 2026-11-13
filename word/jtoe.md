@@ -204,3 +204,4 @@ feel secure in my finance\
 四択問題\multiple-choice question
 非常識\inconsiderate
 別の選択肢を探した\I looked for other options.
+閉店する\close down
