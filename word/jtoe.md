@@ -199,3 +199,4 @@ feel secure in my finance\
 環境問題に対して積極的に行動する\take action actively to address environmental issues
 〜に対する自信、信頼\confidence in
 良くも悪くも\for better or worse
+奇跡的に\miraculously
