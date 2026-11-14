@@ -905,3 +905,4 @@ touchy subject\触れにくい話題
 prop\支柱
 mumble\ぶつぶつ言う
 bump\こぶ
+rinse\すすぐ、胃へ流し込む
