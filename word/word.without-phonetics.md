@@ -923,3 +923,4 @@ will you attest it's true?\それが真実であると証言しますか
 reclaim\再生する
 elk\ヘラジカ
 fungus\菌類
+padlock\南京錠
