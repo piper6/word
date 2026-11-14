@@ -909,3 +909,4 @@ rinse\すすぐ、胃へ流し込む
 fig\イチジク
 tread\歩く
 bureau\たんす
+thaw\雪が溶ける
