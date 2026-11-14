@@ -919,3 +919,4 @@ artery\動脈
 grin\笑顔を見せて笑う
 in a daze\ぼーっとして
 out of spite\悪意から
+will you attest it's true?\それが真実であると証言しますか
