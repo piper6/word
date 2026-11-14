@@ -211,3 +211,4 @@ feel secure in my finance\
 3食分のビタミン\three meals' worth of vitamins
 睡眠をまとめてとる\sleep in one stretch
 知っている限りではない\not that i know of
+テストの点数が本質ではない\scores aren't the point
