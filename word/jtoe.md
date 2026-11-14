@@ -215,3 +215,4 @@ feel secure in my finance\
 充実した人生\fulfilling life
 運だよ\luck of the draw
 ちゃんとした理由\valid reason
+手の込んだ料理\elaborate dish
