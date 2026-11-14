@@ -927,3 +927,4 @@ padlock\南京錠
 traitor\反逆者
 pastime\娯楽、気晴らし
 by a hair's breadth\かろうじて
+flashy makeup\派手な化粧
