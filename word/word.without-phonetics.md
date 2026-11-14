@@ -915,3 +915,4 @@ gasp\あえぎ、息切れ
 whistle\口笛を吹く
 sled\そり
 ramp\傾斜路
+artery\動脈
