@@ -916,3 +916,4 @@ whistle\口笛を吹く
 sled\そり
 ramp\傾斜路
 artery\動脈
+grin\笑顔を見せて笑う
