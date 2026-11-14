@@ -911,3 +911,4 @@ tread\歩く
 bureau\たんす
 thaw\雪が溶ける
 squash\押しつぶす
+gasp\あえぎ、息切れ
