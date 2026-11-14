@@ -913,3 +913,4 @@ thaw\雪が溶ける
 squash\押しつぶす
 gasp\あえぎ、息切れ
 whistle\口笛を吹く
+sled\そり
