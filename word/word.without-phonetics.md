@@ -925,3 +925,4 @@ elk\ヘラジカ
 fungus\菌類
 padlock\南京錠
 traitor\反逆者
+pastime\娯楽、気晴らし
