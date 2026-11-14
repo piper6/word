@@ -210,3 +210,4 @@ feel secure in my finance\
 インデックス　個別株\index fund individual stock
 3食分のビタミン\three meals' worth of vitamins
 睡眠をまとめてとる\sleep in one stretch
+知っている限りではない\not that i know of
