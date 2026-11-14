@@ -213,3 +213,4 @@ feel secure in my finance\
 知っている限りではない\not that i know of
 テストの点数が本質ではない\scores aren't the point
 充実した人生\fulfilling life
+運だよ\luck of the draw
