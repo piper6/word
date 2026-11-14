@@ -912,4 +912,4 @@ bureau\たんす
 thaw\雪が溶ける
 squash\押しつぶす
 gasp\あえぎ、息切れ
-whisle\口笛を吹く
+whistle\口笛を吹く
