@@ -904,3 +904,4 @@ belly\お腹
 touchy subject\触れにくい話題
 prop\支柱
 mumble\ぶつぶつ言う
+bump\こぶ
