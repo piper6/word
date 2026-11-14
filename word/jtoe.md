@@ -214,3 +214,4 @@ feel secure in my finance\
 テストの点数が本質ではない\scores aren't the point
 充実した人生\fulfilling life
 運だよ\luck of the draw
+ちゃんとした理由\valid reason
