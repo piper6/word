@@ -914,3 +914,4 @@ squash\押しつぶす
 gasp\あえぎ、息切れ
 whistle\口笛を吹く
 sled\そり
+ramp\傾斜路
