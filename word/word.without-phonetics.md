@@ -917,3 +917,4 @@ sled\そり
 ramp\傾斜路
 artery\動脈
 grin\笑顔を見せて笑う
+in a daze\ぼーっとして
