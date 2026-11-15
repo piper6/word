@@ -931,3 +931,4 @@ flashy makeup\派手な化粧
 aviation\飛行
 rig rigged casino\着せる、八百長の
 grace period\猶予期間
+granite\みかげ石
