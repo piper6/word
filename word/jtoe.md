@@ -218,3 +218,4 @@ feel secure in my finance\
 手の込んだ料理\elaborate dish
 礼儀\decency
 社会人になる\enter the workforce
+恨む\resent
