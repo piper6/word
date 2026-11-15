@@ -934,3 +934,4 @@ grace period\猶予期間
 granite\みかげ石
 spring(not a season)\ばね
 county\州
+groomed\身なりを整えた
