@@ -224,3 +224,4 @@ feel secure in my finance\
 制限を強める\tighten restrictions
 将来の選択肢を狭める\limit their future options
 立派\admirable
+諦めなよ\you should resign yourself to it
