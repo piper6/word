@@ -936,3 +936,4 @@ spring(not a season)\ばね
 county\州
 groomed\身なりを整えた
 in a roundabout way\遠回しに
+tipping point\転換点
