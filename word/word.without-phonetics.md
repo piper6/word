@@ -933,3 +933,4 @@ rig rigged casino\着せる、八百長の
 grace period\猶予期間
 granite\みかげ石
 spring(not a season)\ばね
+county\州
