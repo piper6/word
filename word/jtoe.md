@@ -221,3 +221,4 @@ feel secure in my finance\
 恨む\resent someone for something
 どのくらいの割合がりんごなの？\How many of them are apples
 短所　長所\shortcomings strengths
+制限を強める\tighten restrictions
