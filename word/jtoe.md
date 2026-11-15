@@ -219,3 +219,4 @@ feel secure in my finance\
 礼儀\decency
 社会人になる\enter the workforce
 恨む\resent someone for something
+どのくらいの割合がりんごなの？\How many of them are apples
