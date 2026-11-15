@@ -935,3 +935,4 @@ granite\みかげ石
 spring(not a season)\ばね
 county\州
 groomed\身なりを整えた
+in a roundabout way\遠回しに
