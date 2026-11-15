@@ -217,3 +217,4 @@ feel secure in my finance\
 ちゃんとした理由\valid reason
 手の込んだ料理\elaborate dish
 礼儀\decency
+社会人になる\enter the workforce
