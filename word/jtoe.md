@@ -222,3 +222,4 @@ feel secure in my finance\
 どのくらいの割合がりんごなの？\How many of them are apples
 短所　長所\shortcomings strengths
 制限を強める\tighten restrictions
+将来の選択肢を狭める\limit their future options
