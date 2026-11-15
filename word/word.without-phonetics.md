@@ -937,3 +937,4 @@ county\州
 groomed\身なりを整えた
 in a roundabout way\遠回しに
 tipping point\転換点(turningより爆発的？)
+spit spit out an error\つばをはく、エラーを吐く
