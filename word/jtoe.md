@@ -216,3 +216,4 @@ feel secure in my finance\
 運だよ\luck of the draw
 ちゃんとした理由\valid reason
 手の込んだ料理\elaborate dish
+礼儀\decency
