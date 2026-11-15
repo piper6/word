@@ -223,3 +223,4 @@ feel secure in my finance\
 短所　長所\shortcomings strengths
 制限を強める\tighten restrictions
 将来の選択肢を狭める\limit their future options
+立派\admirable
