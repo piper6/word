@@ -227,3 +227,4 @@ feel secure in my finance\
 諦めなよ\you should resign yourself to it
 本末転倒\it defeats the purpose
 ガチ勢\hardcore
+ギリギリ間に合った(3語)\just in time
