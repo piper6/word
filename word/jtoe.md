@@ -229,3 +229,4 @@ feel secure in my finance\
 ガチ勢\hardcore
 ギリギリ間に合った(3語)\just in time
 経年劣化している\has deteriorated over time
+時間空間制約\constraints of time and space
