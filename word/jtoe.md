@@ -202,7 +202,7 @@ feel secure in my finance\
 奇跡的に\miraculously
 受験者\test taker
 四択問題\multiple-choice question
-非常識\inconsiderate
+非常識\inconsiderate socially unacceptable
 別の選択肢を探した\I looked for other options.
 閉店する\close down
 声量を上げる/下げる\raise lower
