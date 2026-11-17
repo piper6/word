@@ -943,3 +943,4 @@ cop\警官
 swarm\(蜂などの)大群
 bolt\逃げ出す
 stall\小屋
+crayon\クレヨン
