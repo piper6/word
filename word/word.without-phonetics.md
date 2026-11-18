@@ -947,3 +947,4 @@ crayon\クレヨン
 crumb\パンくず
 plump pumpkin\ずっしりかぼちゃ
 muse\熟考する
+cold front\寒冷前線
