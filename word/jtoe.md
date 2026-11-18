@@ -232,3 +232,4 @@ feel secure in my finance\
 時間空間制約\constraints of time and space
 かすめる\glance off
 根に持たないよ\I won't hold it against you.
+過少申告する\underreport
