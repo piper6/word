@@ -946,3 +946,4 @@ stall\小屋
 crayon\クレヨン
 crumb\パンくず
 plump pumpkin\ずっしりかぼちゃ
+muse\熟考する
