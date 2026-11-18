@@ -231,3 +231,4 @@ feel secure in my finance\
 経年劣化している\has deteriorated over time
 時間空間制約\constraints of time and space
 かすめる\glance off
+根に持たないよ\I won't hold it against you.
