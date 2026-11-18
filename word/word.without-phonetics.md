@@ -948,3 +948,4 @@ crumb\パンくず
 plump pumpkin\ずっしりかぼちゃ
 muse\熟考する
 cold front\寒冷前線
+ledge\棚、突き出た突起
