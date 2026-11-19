@@ -955,3 +955,4 @@ caste\階級
 you come off as an American\アメリカ人という印象を与える
 For ease of understanding\理解しやすいように
 exercise is revealing
+without breaking a sweat\あせひとつかかずに
