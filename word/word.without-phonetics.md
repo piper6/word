@@ -953,3 +953,4 @@ what's your lore\設定，伝承など
 pedestal\台座
 caste\階級
 you come off as an American\アメリカ人という印象を与える
+For ease of understanding\理解しやすいように
