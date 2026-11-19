@@ -952,3 +952,4 @@ ledge\棚、突き出た突起
 what's your lore\設定，伝承など
 pedestal\台座
 caste\階級
+you come off as an American\アメリカ人という印象を与える
