@@ -957,3 +957,4 @@ For ease of understanding\理解しやすいように
 exercise is revealing
 without breaking a sweat\あせひとつかかずに
 roast someone for\いじる
+inclement weather\悪天候
