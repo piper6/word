@@ -958,3 +958,4 @@ exercise is revealing
 without breaking a sweat\あせひとつかかずに
 roast someone for\いじる
 inclement weather\悪天候
+image/sound/memory is fuzzy\曖昧な
