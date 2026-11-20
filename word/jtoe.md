@@ -233,3 +233,4 @@ feel secure in my finance\
 かすめる\glance off
 根に持たないよ\I won't hold it against you.
 過少申告する\underreport
+どんな選択肢もある\nothing is off the table
