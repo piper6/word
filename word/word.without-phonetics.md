@@ -959,3 +959,4 @@ without breaking a sweat\あせひとつかかずに
 roast someone for\いじる
 inclement weather\悪天候
 image/sound/memory is fuzzy\曖昧な
+haul shopping haul\引っ張る　収穫品
