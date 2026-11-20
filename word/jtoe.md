@@ -235,3 +235,4 @@ feel secure in my finance\
 過少申告する\underreport
 どんな選択肢もある\nothing is off the table
 実況\commentary
+締切を守る守らない\meet miss the deadline
