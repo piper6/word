@@ -241,3 +241,4 @@ feel secure in my finance\
 〜に比例した確率がある\it has probability proportional to
 冷笑する\sneer at
 甘え\making excuses
+〜と考えるなんて甘い\it's naive to think
