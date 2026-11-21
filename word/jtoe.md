@@ -238,3 +238,4 @@ feel secure in my finance\
 締切を守る守らない\meet miss the deadline
 1.8倍する\multiply by 1.8
 ログイン時に使うのと同じやつ？\the same one i use
+〜に比例した確率がある\it has probability proportional to
