@@ -239,4 +239,4 @@ feel secure in my finance\
 1.8倍する\multiply by 1.8
 ログイン時に使うのと同じやつ？\the same one i use
 〜に比例した確率がある\it has probability proportional to
-冷笑する\sneer
+冷笑する\sneer at
