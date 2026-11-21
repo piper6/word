@@ -240,3 +240,4 @@ feel secure in my finance\
 ログイン時に使うのと同じやつ？\the same one i use
 〜に比例した確率がある\it has probability proportional to
 冷笑する\sneer at
+甘え\making excuses
