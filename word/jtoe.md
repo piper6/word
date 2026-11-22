@@ -242,3 +242,4 @@ feel secure in my finance\
 冷笑する\sneer at
 甘え\making excuses
 〜と考えるなんて甘い\it's naive to think
+計算すると〜になる\comes out to
