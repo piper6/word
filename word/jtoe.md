@@ -243,3 +243,4 @@ feel secure in my finance\
 甘え\making excuses
 〜と考えるなんて甘い\it's naive to think
 計算すると〜になる\comes out to
+むしろ/どちらかといえば\if anything
