@@ -245,3 +245,4 @@ feel secure in my finance\
 計算すると〜になる\comes out to
 むしろ/どちらかといえば\if anything
 活かす/つけ込む\capitalize on
+be followed byの逆\be preceded by
