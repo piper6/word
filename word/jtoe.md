@@ -246,3 +246,4 @@ feel secure in my finance\
 むしろ/どちらかといえば\if anything
 活かす/つけ込む\capitalize on
 be followed byの逆\be preceded by
+頭字語\acronym
