@@ -248,3 +248,4 @@ feel secure in my finance\
 be followed byの逆\be preceded by
 頭字語\acronym
 しまう\put away
+うざい\obnoxious
