@@ -251,3 +251,4 @@ be followed byの逆\be preceded by
 うざい\obnoxious
 何時がいい？\What time works for you?
 慰める\comfort
+控えめな、そこそこの\modest
