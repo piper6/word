@@ -252,3 +252,4 @@ be followed byの逆\be preceded by
 何時がいい？\What time works for you?
 慰める\comfort
 控えめな、そこそこの\modest
+丁寧に\neatly
