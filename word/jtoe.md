@@ -249,3 +249,4 @@ be followed byの逆\be preceded by
 頭字語\acronym
 しまう\put away
 うざい\obnoxious
+何時がいい？\What time works for you?
