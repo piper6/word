@@ -253,3 +253,4 @@ be followed byの逆\be preceded by
 慰める\comfort
 控えめな、そこそこの\modest
 丁寧に\neatly
+ひとまとまりの席\seats together
