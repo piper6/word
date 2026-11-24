@@ -250,3 +250,4 @@ be followed byの逆\be preceded by
 しまう\put away
 うざい\obnoxious
 何時がいい？\What time works for you?
+慰める\comfort
