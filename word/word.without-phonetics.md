@@ -878,3 +878,88 @@ petty\心が狭い/とるにたりない
 zone out\ボーッとする
 numb\かじかんだ、無感覚な
 up in the air\uncertain
+condense\凝縮させる、ようやくする
+prose\散文
+bowel\腸
+seduce\誘惑する
+slander\中傷
+adjourn\休会、散会する
+frolic\戯れる
+premiere\初演
+rover\流浪者
+stump,stumped\切り株、困る
+rehearse\リハーサルをする
+hotbed of crime\温床
+substantive discussion\本質に迫る議論
+random static\突然の雑音
+dew\霧、しずく
+be pissed off\ムカついている
+oblivion\忘却
+ammunition\弾薬
+intercept\遮る
+crumple\しわくちゃにする
+hard and fast rule\厳格なルール
+flicker\ちらちらする、明滅する
+belly\お腹
+touchy subject\触れにくい話題
+prop\支柱
+mumble\ぶつぶつ言う
+bump\こぶ
+rinse\すすぐ、胃へ流し込む
+fig\イチジク
+tread\歩く
+bureau\たんす
+thaw\雪が溶ける
+squash\押しつぶす
+gasp\あえぎ、息切れ
+whistle\口笛を吹く
+sled\そり
+ramp\傾斜路
+artery\動脈
+grin\笑顔を見せて笑う
+in a daze\ぼーっとして
+out of spite\悪意から
+will you attest it's true?\それが真実であると証言しますか
+reclaim\再生する
+elk\ヘラジカ
+fungus\菌類
+padlock\南京錠
+traitor\反逆者
+pastime\娯楽、気晴らし
+by a hair's breadth\かろうじて
+flashy makeup\派手な化粧
+aviation\飛行
+rig rigged casino\着せる、八百長の
+grace period\猶予期間
+granite\みかげ石
+spring(not a season)\ばね
+county\州
+groomed\身なりを整えた
+in a roundabout way\遠回しに
+tipping point\転換点(turningより爆発的？)
+spit spit out an error\つばをはく、エラーを吐く
+wedge\くさび
+cop\警官
+swarm\(蜂などの)大群
+bolt\逃げ出す
+stall\小屋
+crayon\クレヨン
+crumb\パンくず
+plump pumpkin\ずっしりかぼちゃ
+muse\熟考する
+cold front\寒冷前線
+ledge\棚、突き出た突起
+what's your lore\設定，伝承など
+pedestal\台座
+caste\階級
+you come off as an American\アメリカ人という印象を与える
+For ease of understanding\理解しやすいように
+exercise is revealing
+without breaking a sweat\あせひとつかかずに
+roast someone for\いじる
+inclement weather\悪天候
+image/sound/memory is fuzzy\曖昧な
+haul shopping haul\引っ張る　収穫品
+set forth my opinion\所信を表明する
+hump\こぶ
+engulf the lighthouse\灯台を飲み込む

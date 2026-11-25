@@ -177,3 +177,87 @@ feel secure in my finance\
 非日常\something out of the ordinary
 資金を調達する\raise money
 〜と共に\together with
+すぐに(2語)\right away
+期間限定セール\limited-time offer
+下見\check out
+反論する/言い返す\argue back
+入院する\be hospitalized
+介護/介護士\caregiving caregiver
+道を歩く\walk down the road
+それなりの品質の\decent-quality
+天井が高い\it has a higher performance ceiling
+協力して\collaboratively
+写真が横に並んでいる\The pictures are arranged horizontally./vertically
+闇雲に\blindly
+目を丸くする\roll one's eyes at me
+直感に反する\go against my intuition
+一泊する\stay one night
+察して\read the room
+病気が重い/軽い\severe mild
+金額をぼかす\be vague about
+自発的に\on my own initiative
+環境問題に対して積極的に行動する\take action actively to address environmental issues
+〜に対する自信、信頼\confidence in
+良くも悪くも\for better or worse
+奇跡的に\miraculously
+受験者\test taker
+四択問題\multiple-choice question
+非常識\inconsiderate socially unacceptable
+別の選択肢を探した\I looked for other options.
+閉店する\close down
+声量を上げる/下げる\raise lower
+手間を省く\save time and effort
+インデックス　個別株\index fund individual stock
+3食分のビタミン\three meals' worth of vitamins
+睡眠をまとめてとる\sleep in one stretch
+知っている限りではない\not that i know of
+テストの点数が本質ではない\scores aren't the point
+充実した人生\fulfilling life
+運だよ\luck of the draw
+ちゃんとした理由\valid reason
+手の込んだ料理\elaborate dish
+礼儀\decency
+社会人になる\enter the workforce
+恨む\resent someone for something
+どのくらいの割合がりんごなの？\How many of them are apples
+短所　長所\shortcomings strengths
+制限を強める\tighten restrictions
+将来の選択肢を狭める\limit their future options
+立派\admirable
+諦めなよ\you should resign yourself to it
+本末転倒\it defeats the purpose
+ガチ勢\hardcore
+ギリギリ間に合った(3語)\just in time
+経年劣化している\has deteriorated over time
+時間空間制約\constraints of time and space
+かすめる\glance off
+根に持たないよ\I won't hold it against you.
+過少申告する\underreport
+どんな選択肢もある\nothing is off the table
+実況\commentary
+締切を守る守らない\meet miss the deadline
+1.8倍する\multiply by 1.8
+ログイン時に使うのと同じやつ？\the same one i use
+〜に比例した確率がある\it has probability proportional to
+冷笑する\sneer at
+甘え\making excuses
+〜と考えるなんて甘い\it's naive to think
+計算すると〜になる\comes out to
+むしろ/どちらかといえば\if anything
+活かす/つけ込む\capitalize on
+be followed byの逆\be preceded by
+頭字語\acronym
+しまう\put away
+うざい\obnoxious
+何時がいい？\What time works for you?
+慰める\comfort
+控えめな、そこそこの\modest
+丁寧に\neatly
+ひとまとまりの席\seats together
+振り返る\look back on
+さっき(just nowではない)\a while ago
+隙間\gap
+(商品を)取り扱う\carry
+(ひとが)気を使う\attentive
+蓋が取れる\the lid comes off
+今の所は\at the moment
