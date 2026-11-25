@@ -256,3 +256,4 @@ be followed byの逆\be preceded by
 ひとまとまりの席\seats together
 振り返る\look back on
 さっき(just nowではない)\a while ago
+隙間\gap
