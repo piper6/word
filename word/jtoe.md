@@ -254,3 +254,4 @@ be followed byの逆\be preceded by
 控えめな、そこそこの\modest
 丁寧に\neatly
 ひとまとまりの席\seats together
+振り返る\look back on
