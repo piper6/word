@@ -260,3 +260,4 @@ be followed byの逆\be preceded by
 (商品を)取り扱う\carry
 (ひとが)気を使う\attentive
 蓋が取れる\the lid comes off
+今の所は\at the moment
