@@ -364,6 +364,7 @@
   }
 
   // ---------- deck / group ops ----------
+  var LAST = -1;  // "Last 100" = the newest cards at the end of the file
   function groupCount(){ return Math.max(1, Math.ceil(cards.length / GROUP_SIZE)); }
   function buildGroups(){
     groupSelect.textContent = "";
@@ -373,6 +374,12 @@
       o.textContent = "Group " + (start/GROUP_SIZE + 1) + " (" + (start+1) + "–" + Math.min(start+GROUP_SIZE, cards.length) + ")";
       groupSelect.appendChild(o);
     }
+    if(cards.length > GROUP_SIZE){
+      var last = document.createElement("option");
+      last.value = String(LAST);
+      last.textContent = "Last " + GROUP_SIZE + " (" + (cards.length - GROUP_SIZE + 1) + "–" + cards.length + ")";
+      groupSelect.appendChild(last);
+    }
     if(!cards.length){
       var e = document.createElement("option"); e.value = "0"; e.textContent = "No cards"; groupSelect.appendChild(e);
     }
@@ -380,7 +387,8 @@
     groupSelect.disabled = cards.length === 0;
   }
   function activeIndices(){
-    var arr = [], start = group * GROUP_SIZE, end = Math.min(start + GROUP_SIZE, cards.length);
+    var arr = [], start = group === LAST ? Math.max(0, cards.length - GROUP_SIZE) : group * GROUP_SIZE;
+    var end = Math.min(start + GROUP_SIZE, cards.length);
     for(var i=start;i<end;i++){ if(skipEmpty && !cards[i].hasAnswer) continue; arr.push(i); }
     return arr;
   }
@@ -401,16 +409,22 @@
     var p = order.indexOf(current);
     pos = p >= 0 ? p : Math.min(pos, Math.max(0, order.length-1));
   }
-  function savedGroup(){ var g = Number(lsGet("fc_group_" + deck)); return Number.isInteger(g) && g >= 0 ? g : 0; }
+  function savedGroup(){ var g = Number(lsGet("fc_group_" + deck)); return Number.isInteger(g) && g >= LAST ? g : 0; }
 
   function selectDeck(name, keepPlace){
     deck = name; lsSet("fc_deck", name);
     Array.prototype.forEach.call(el("deckSeg").children, function(b){ b.classList.toggle("on", b.getAttribute("data-deck") === name); });
     var prevCount = cards.length;
     cards = parse(deckTexts[name]);
-    if(!keepPlace){ group = Math.min(savedGroup(), groupCount()-1); buildGroups(); shuffle(); }
+    if(!keepPlace){
+      group = savedGroup();
+      if(group === LAST && cards.length <= GROUP_SIZE) group = 0;
+      if(group !== LAST) group = Math.min(group, groupCount()-1);
+      buildGroups(); shuffle();
+    }
     else {
-      if(group > groupCount()-1) group = groupCount()-1;
+      if(group !== LAST && group > groupCount()-1) group = groupCount()-1;
+      if(group === LAST && cards.length <= GROUP_SIZE) group = 0;
       if(prevCount !== cards.length) buildGroups();
       reconcileOrder();
     }
@@ -592,7 +606,7 @@
   el("shuffleBtn").addEventListener("click", function(){ shuffle(); render(); });
   groupSelect.addEventListener("change", function(){
     var g = Number(groupSelect.value);
-    if(!Number.isInteger(g) || g < 0 || g >= groupCount()) return;
+    if(!Number.isInteger(g) || g < LAST || g >= groupCount()) return;
     group = g; lsSet("fc_group_" + deck, String(g)); shuffle(); render();
   });
   el("skipEmpty").addEventListener("change", function(e){ skipEmpty = e.target.checked; shuffle(); render(); });
