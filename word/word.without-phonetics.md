@@ -964,3 +964,4 @@ set forth my opinion\所信を表明する
 hump\こぶ
 engulf the lighthouse\灯台を飲み込む
 quicksand\流砂
+a loaf of bread\ひとかたまり
