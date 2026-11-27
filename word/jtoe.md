@@ -263,3 +263,4 @@ be followed byの逆\be preceded by
 今の所は\at the moment
 大きく変える\transform
 お咎めなし\get away with a crime
+手渡す\hand something to someone
