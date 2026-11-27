@@ -965,3 +965,4 @@ hump\こぶ
 engulf the lighthouse\灯台を飲み込む
 quicksand\流砂
 a loaf of bread\ひとかたまり
+facet\(物事の)面
