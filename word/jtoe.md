@@ -265,3 +265,4 @@ be followed byの逆\be preceded by
 お咎めなし\get away with a crime
 手渡す\hand something to someone
 強制終了させる\forcibly end
+知名度\public awareness
