@@ -262,3 +262,4 @@ be followed byの逆\be preceded by
 蓋が取れる\the lid comes off
 今の所は\at the moment
 大きく変える\transform
+お咎めなし\get away with a crime
