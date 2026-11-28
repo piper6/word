@@ -268,3 +268,4 @@ be followed byの逆\be preceded by
 知名度\public awareness
 ホワイトカラー\white-collar workers
 動機を与える\give someone an incentive to do
+より高い税を課す\impose higher taxes on
