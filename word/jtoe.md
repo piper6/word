@@ -267,3 +267,4 @@ be followed byの逆\be preceded by
 強制終了させる\forcibly end
 知名度\public awareness
 ホワイトカラー\white-collar workers
+動機を与える\give someone an incentive to do
