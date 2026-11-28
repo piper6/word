@@ -967,3 +967,4 @@ quicksand\流砂
 a loaf of bread\ひとかたまり
 facet\(物事の)面
 sturdy cabin\頑丈な小屋
+cost/gross profit/selling price
