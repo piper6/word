@@ -273,3 +273,4 @@ be followed byの逆\be preceded by
 精算する\settle up
 業務を遂行する\carry out one's duties
 常習犯\repeat offender
+怪しい情報商材\sketchy online courses
