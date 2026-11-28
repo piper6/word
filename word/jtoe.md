@@ -266,3 +266,4 @@ be followed byの逆\be preceded by
 手渡す\hand something to someone
 強制終了させる\forcibly end
 知名度\public awareness
+ホワイトカラー\white-collar workers
