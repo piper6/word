@@ -271,3 +271,4 @@ be followed byの逆\be preceded by
 より高い税を課す\impose higher taxes on
 に有害\detrimental to health
 精算する\settle up
+業務を遂行する\carry out one's duties
