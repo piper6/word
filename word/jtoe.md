@@ -272,3 +272,4 @@ be followed byの逆\be preceded by
 に有害\detrimental to health
 精算する\settle up
 業務を遂行する\carry out one's duties
+常習犯\repeat offender
