@@ -269,3 +269,4 @@ be followed byの逆\be preceded by
 ホワイトカラー\white-collar workers
 動機を与える\give someone an incentive to do
 より高い税を課す\impose higher taxes on
+に有害\detrimental to health
