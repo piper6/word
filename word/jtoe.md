@@ -261,3 +261,8 @@ be followed byの逆\be preceded by
 (ひとが)気を使う\attentive
 蓋が取れる\the lid comes off
 今の所は\at the moment
+大きく変える\transform
+お咎めなし\get away with a crime
+手渡す\hand something to someone
+強制終了させる\forcibly end
+知名度\public awareness
